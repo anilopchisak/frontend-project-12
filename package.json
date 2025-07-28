@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/anilopchisak/frontend-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.4"
+    "@hexlet/chat-server": "^2.0.4",
+    "react-router": "^7.7.1"
   }
 }
