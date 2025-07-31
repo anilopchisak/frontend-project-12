@@ -1,6 +1,6 @@
 import LoginPage from '../pages/login/LoginPage.jsx'
 import SignupPage from '../pages/signup/SignupPage.jsx'
-import ErrorPage from '../pages/not-found/ErrorPage.jsx'
+import NotFoundPage from '../pages/not-found/NotFoundPage.jsx'
 
 export const routes = [
     {
@@ -17,6 +17,6 @@ export const routes = [
     },
     {
         path: '*',
-        element: <ErrorPage />,
+        element: <NotFoundPage />,
     },
 ]

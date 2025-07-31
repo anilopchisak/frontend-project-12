@@ -16,6 +16,9 @@ deploy:
 start:
 	make start-backend
 
+# start:
+# 	make start-backend & npm run dev
+
 develop:
 	make start-backend & make start-frontend
 

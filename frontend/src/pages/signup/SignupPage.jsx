@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik"
-import { signupValidationSchema } from "../../shared/validation/schemes"
+import { signupValidationSchema } from "../../shared/lib/validation/schemes"
 import FormField from "../../shared/ui/form/FormField"
 
 const SignupPage = () => {

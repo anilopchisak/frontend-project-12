@@ -1,18 +1,36 @@
 import { Formik, Form } from "formik"
-import { NavLink } from "react-router"
-import { loginValidationSchema } from "../../shared/validation/schemes"
+import { NavLink, useNavigate } from "react-router"
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from "react"
+
+import { loginValidationSchema } from "../../shared/lib/validation/schemes"
 import FormField from "../../shared/ui/form/FormField"
+import { loginUser } from "../../features/auth/model/authSlice"
+import { loadingStatus } from "../../shared/utils/statusConsts"
 
 const LoginPage = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { token, status, error } = useSelector((state) => state.auth)
+
+    const handleSubmit = (values) => {
+        dispatch(loginUser(values))
+    }
+
+    useEffect(() => {
+        console.log(token)
+        if (token !== null) {
+            console.log(token)
+            navigate('/')
+        }
+    }, [token])
+
     return (
         <div>
             <Formik
                 initialValues={{ username: '', password: '' }}
-                onSubmit={() => {
-                    console.log('Form is validated! Submitting...')
-                    // setSubmitting(false)
-                }}
                 validationSchema={loginValidationSchema}
+                onSubmit={handleSubmit}                
             >
                 <Form>
                     <FormField 
@@ -24,7 +42,14 @@ const LoginPage = () => {
                         name='password'
                         type='password'
                     />
-                    <button type="submit">Submit</button>
+                    <button 
+                        type="submit"
+                        disabled={status === loadingStatus.loading}
+                    >
+                        Submit
+                    </button>
+                    {error && <div style={{ color: 'red' }}>{error}</div>}
+                    {status && <div style={{ color: 'blue' }}>{status}</div>}
                 </Form>
             </Formik>
             <NavLink to='/signup'>
