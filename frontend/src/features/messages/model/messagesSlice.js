@@ -9,7 +9,7 @@ const initialState = messagesAdapter.getInitialState({
     error: null,
 })
 
-const getMessages = createAsyncThunk(
+export const getMessages = createAsyncThunk(
     'messages/getMessages',
     async (token, { rejectWithValue }) => {
         try {
@@ -20,7 +20,7 @@ const getMessages = createAsyncThunk(
     }
 )
 
-const addMessage = createAsyncThunk(
+export const addMessage = createAsyncThunk(
     'messages/addMessage',
     async (message, token, { rejectWithValue }) => {
         try {
@@ -31,7 +31,7 @@ const addMessage = createAsyncThunk(
     }
 )
 
-const editMessage = createAsyncThunk(
+export const editMessage = createAsyncThunk(
     'messages/editMessage',
     async (id, message, token, { rejectWithValue }) => {
         try {
@@ -42,7 +42,7 @@ const editMessage = createAsyncThunk(
     }
 )
 
-const deleteMessage = createAsyncThunk(
+export const deleteMessage = createAsyncThunk(
     'messages/deleteMessage',
     async (id, token, { rejectWithValue }) => {
         try {
@@ -65,7 +65,7 @@ const messagesSlice = createSlice({
             })
             .addCase(getMessages.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                messagesAdapter.setAll(state, action.payload.messages)
+                messagesAdapter.setAll(state, action.payload)
             })
             .addCase(getMessages.rejected, (state, action) => {
                 state.status = loadingStatus.failed
@@ -78,7 +78,7 @@ const messagesSlice = createSlice({
             })
             .addCase(addMessage.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                messagesAdapter.addOne(state, action.payload.message)
+                messagesAdapter.addOne(state, action.payload)
             })
             .addCase(addMessage.rejected, (state, action) => {
                 state.status = loadingStatus.failed
@@ -92,8 +92,8 @@ const messagesSlice = createSlice({
             .addCase(editMessage.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 messagesAdapter.updateOne(state, {
-                    id: action.payload.message.id,
-                    changes: action.payload.message
+                    id: action.payload.id,
+                    changes: action.payload
                 })
             })
             .addCase(editMessage.rejected, (state, action) => {

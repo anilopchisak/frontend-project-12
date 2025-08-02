@@ -65,7 +65,7 @@ const channelsSlice = createSlice({
             })
             .addCase(getChannels.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                channelsAdapter.setAll(state, action.payload.channels)
+                channelsAdapter.setAll(state, action.payload)
             })
             .addCase(getChannels.rejected, (state, action) => {
                 state.status = loadingStatus.failed
@@ -78,7 +78,7 @@ const channelsSlice = createSlice({
             })
             .addCase(addChannel.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                channelsAdapter.addOne(state, action.payload.channel)
+                channelsAdapter.addOne(state, action.payload)
             })
             .addCase(addChannel.rejected, (state, action) => {
                 state.status = loadingStatus.failed
@@ -92,8 +92,8 @@ const channelsSlice = createSlice({
             .addCase(editChannel.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 channelsAdapter.updateOne(state, {
-                    id: action.payload.channel.id,
-                    changes: action.payload.channel
+                    id: action.payload.id,
+                    changes: action.payload
                 })
             })
             .addCase(editChannel.rejected, (state, action) => {
