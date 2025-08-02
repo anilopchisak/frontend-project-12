@@ -2,8 +2,8 @@ import apiClient from "../../../shared/api/apiClient.js"
 import { apiRoutes } from '../../../shared/utils/apiConsts.js'
 
 const authApi = {
-    login: (credentials, token) => apiClient.post(apiRoutes.login, credentials, token),
-    signup: (userData, token) => apiClient.post(apiRoutes.login, userData, token),
+    login: (credentials) => apiClient.post(apiRoutes.login, credentials),
+    signup: (userData) => apiClient.post(apiRoutes.signup, userData),
 }
 
 export default authApi
