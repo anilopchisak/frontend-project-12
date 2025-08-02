@@ -1,18 +1,25 @@
-import axiosInstance from "../../../shared/api/axiosInstance"
+import apiClient from "../../../shared/api/apiClient.js"
 import { apiRoutes } from '../../../shared/utils/apiConsts.js'
 
-export const login = async (credentials) => {
-    const response = await axiosInstance.post(
-        apiRoutes.login, 
-        credentials
-    )
-    return response.data
+const authApi = {
+    login: (credentials, token) => apiClient.post(apiRoutes.login, credentials, token),
+    signup: (userData, token) => apiClient.post(apiRoutes.login, userData, token),
 }
 
-export const signup = async (userData) => {
-    const response = await axiosInstance.post(
-        apiRoutes.signup, 
-        userData
-    )
-    return response.data
-}
+export default authApi
+
+// export const login = async (credentials) => {
+//     const response = await apiClient.post(
+//         apiRoutes.login, 
+//         credentials
+//     )
+//     return response.data
+// }
+
+// export const signup = async (userData) => {
+//     const response = await apiClient.post(
+//         apiRoutes.signup, 
+//         userData
+//     )
+//     return response.data
+// }

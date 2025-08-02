@@ -18,9 +18,7 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
-        console.log(token)
-        if (token !== null) {
-            console.log(token)
+        if (token) {
             navigate('/')
         }
     }, [token])

@@ -1,35 +1,45 @@
-import axiosInstance from "../../../shared/api/axiosInstance.js"
-import { apiRoutes } from "../../../shared/utils/consts"
-import { getHeaders } from '../../../shared/api/getHeaders.js'
+import apiClient from "../../../shared/api/apiClient.js"
+import { apiRoutes } from "../../../shared/utils/apiConsts.js"
 
-export const fetchChannels = async (token) => {
-    const response = await axiosInstance.get(
-        apiRoutes.channels, 
-        getHeaders(token)
-    )
-    return response.data
+const url = apiRoutes.channels
+
+const channelsApi = {
+    fetchAll: (token) => apiClient.get(url, token),
+    create: (channelData, token) => apiClient.post(url, channelData, token),
+    update: (channelData, token) => apiClient.patch(url, channelData, token),
+    remove: (id, token) => apiClient.delete(url + `/${id}`, token),
 }
 
-export const createChannel = async (newChannel, token) => {
-    const response = await axiosInstance.post(
-        apiRoutes.channels, newChannel, 
-        getHeaders(token)
-    )
-    return response.data
-}
+export default channelsApi
 
-export const updateChannel = async (updatedChannel, token) => {
-    const response = await axiosInstance.patch(
-        apiRoutes.channels, updatedChannel, 
-        getHeaders(token)
-    )
-    return response.data
-}
+// const path = apiRoutes.channels
 
-export const removeChannel = async (id, token) => {
-    const response = await axiosInstance.delete(
-        apiRoutes.channels + `/${id}`, 
-        getHeaders(token)
-    )
-    return response.data
-}
+// export const fetchChannels = async () => {
+//     const response = await apiClient.get(
+//         path
+//     )
+//     return response.data
+// }
+
+// export const createChannel = async (newChannel) => {
+//     const response = await apiClient.post(
+//         path, 
+//         newChannel
+//     )
+//     return response.data
+// }
+
+// export const updateChannel = async (updatedChannel) => {
+//     const response = await apiClient.patch(
+//         path, 
+//         updatedChannel
+//     )
+//     return response.data
+// }
+
+// export const removeChannel = async (id) => {
+//     const response = await apiClient.delete(
+//         path + `/${id}`
+//     )
+//     return response.data
+// }
