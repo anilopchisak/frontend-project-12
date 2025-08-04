@@ -2,8 +2,9 @@ import { Formik, Form } from "formik"
 import { NavLink, useNavigate } from "react-router"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
+import { useTranslation } from 'react-i18next'
 
-import { loginValidationSchema } from "../../shared/lib/validation/schemes"
+import { loginValidationSchema } from "../../shared/yup/schemes"
 import FormField from "../../shared/ui/form/FormField"
 import { loginUser } from "../../features/auth/model/authSlice"
 import { loadingStatus } from "../../shared/utils/statusConsts"
@@ -11,6 +12,7 @@ import { loadingStatus } from "../../shared/utils/statusConsts"
 const LoginPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { t } = useTranslation()
     const { token, status, error } = useSelector((state) => state.auth)
 
     const handleSubmit = (values) => {
@@ -27,16 +29,16 @@ const LoginPage = () => {
         <div>
             <Formik
                 initialValues={{ username: '', password: '' }}
-                validationSchema={loginValidationSchema}
+                validationSchema={() => loginValidationSchema(t)}
                 onSubmit={handleSubmit}                
             >
                 <Form>
                     <FormField 
-                        label='Username'
+                        label={t('auth.elements.username')}
                         name='username'
                     />
                     <FormField
-                        label='Password'
+                        label={t('auth.elements.password')}
                         name='password'
                         type='password'
                     />
@@ -44,14 +46,14 @@ const LoginPage = () => {
                         type="submit"
                         disabled={status === loadingStatus.loading}
                     >
-                        Submit
+                        {t('auth.elements.loginText')}
                     </button>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
                     {status && <div style={{ color: 'blue' }}>{status}</div>}
                 </Form>
             </Formik>
             <NavLink to='/signup'>
-                Нет аккаунта? Зарегистрируйтесь
+                {t('auth.elements.signupLink')}
             </NavLink>
         </div>
     )

@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next"
+
 const NotFoundPage = () => {
+    const { t } = useTranslation()
     return (
-        <>
-            404: page not found
-        </>
+        <div>
+            {t('notFound.elements.text')}
+        </div>
     )
 }
 
