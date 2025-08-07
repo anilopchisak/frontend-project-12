@@ -7,3 +7,12 @@
     max-height: calc(100vh - 2 * 5rem - 11rem);
     width: 100%;
 }
+
+.placeholder {
+    margin: auto;
+    font-weight: bold;
+    background-color: var(--color-background);
+    padding: 1rem 1.5rem;
+    color: var(--color-text-secondary);
+    border-radius: 2rem;
+}

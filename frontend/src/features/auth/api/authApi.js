@@ -7,19 +7,3 @@ const authApi = {
 }
 
 export default authApi
-
-// export const login = async (credentials) => {
-//     const response = await apiClient.post(
-//         apiRoutes.login, 
-//         credentials
-//     )
-//     return response.data
-// }
-
-// export const signup = async (userData) => {
-//     const response = await apiClient.post(
-//         apiRoutes.signup, 
-//         userData
-//     )
-//     return response.data
-// }

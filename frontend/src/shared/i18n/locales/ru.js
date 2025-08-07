@@ -44,6 +44,8 @@ export default {
             placeholders: {
                 newMessage: 'Введите сообщение...',
                 newName: 'Введите название канала...',
+                selectChannel: 'Выберите канал',
+                startChat: 'Напишите первое сообщение!'
             },
             buttons: {
                 addChannel: 'Добавить',

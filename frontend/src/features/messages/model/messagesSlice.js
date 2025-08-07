@@ -22,18 +22,19 @@ export const getMessages = createAsyncThunk(
 
 export const addMessage = createAsyncThunk(
     'messages/addMessage',
-    async (message, token, { rejectWithValue }) => {
+    async ({ message, token }, { rejectWithValue }) => {
         try {
             return await messagesApi.create(message, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorMessage = error?.response?.data?.message || 'Failed to send message'
+            return rejectWithValue({message: errorMessage})
         }
     }
 )
 
 export const editMessage = createAsyncThunk(
     'messages/editMessage',
-    async (id, message, token, { rejectWithValue }) => {
+    async ({ id, message, token }, { rejectWithValue }) => {
         try {
             return await messagesApi.update(id, message, token)
         } catch (error) {
@@ -44,7 +45,7 @@ export const editMessage = createAsyncThunk(
 
 export const deleteMessage = createAsyncThunk(
     'messages/deleteMessage',
-    async (id, token, { rejectWithValue }) => {
+    async ({ id, token }, { rejectWithValue }) => {
         try {
             return await messagesApi.remove(id, token)
         } catch (error) {
@@ -56,6 +57,11 @@ export const deleteMessage = createAsyncThunk(
 const messagesSlice = createSlice({
     name: 'messages',
     initialState,
+    reducers: {
+        messageRecieved: (state, action) => {
+            messagesAdapter.addOne(state, action.payload)
+        }
+    },
     extraReducers: (builder) => {
         builder
         // getMessages error handler
@@ -115,6 +121,8 @@ const messagesSlice = createSlice({
             })
     }
 })
+
+export const { messageRecieved } = messagesSlice.actions
 
 export const {
   selectAll: selectAllMessages,

@@ -1,31 +1,39 @@
-import { useState } from 'react'
 import Button from '../../../../shared/ui/button/Button'
 import { buttonVariant } from '../../../../shared/utils/buttonVariantConsts'
 import styles from './ChannelItem.module.css'
 import { IoIosArrowDown } from "react-icons/io"
 import cn from 'classnames'
 
-const ChannelItem = ({name}) => {
-    const [selected, setSelected] = useState(false)
-
+const ChannelItem = ({channel, isActive, onSelect}) => {
     const classes = cn({
         [styles.itemContainer]: true,
-        [styles.selected]: selected,
+        [styles.selected]: isActive,
     })
+    const btnVariant = isActive 
+        ? buttonVariant.secondaryLight 
+        : buttonVariant.secondaryDark
+
+    const isChangeable = channel.id === 0 || channel.id === 1
+
+    const handleClick = () => {
+        onSelect(channel.id)
+    }
 
     return (
         <div 
             className={classes} 
-            onClick={() => setSelected(prev => !prev)}
+            onClick={handleClick}
         >
             <p className={styles.channelName}>
-                # {name}
+                # {channel.name}
             </p>
-            <Button 
-                variant={selected ? buttonVariant.secondaryLight : buttonVariant.secondaryDark}
-            >
-                <IoIosArrowDown />
-            </Button>
+            {isChangeable &&
+                <Button 
+                    variant={btnVariant}
+                >
+                    <IoIosArrowDown />
+                </Button>
+            }
         </div>
     )
 }

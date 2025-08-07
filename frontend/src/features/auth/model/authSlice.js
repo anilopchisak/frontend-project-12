@@ -3,8 +3,8 @@ import { loadingStatus } from '../../../shared/utils/statusConsts.js'
 import authApi from '../api/authApi.js'
 
 const initialState ={
-    user: null,
-    token: localStorage.getItem('userToken') || null,
+    user: localStorage.getItem('username') ?? null,
+    token: localStorage.getItem('userToken') ?? null,
     status: loadingStatus.idle,
     error: null,
 }
@@ -15,6 +15,7 @@ export const loginUser = createAsyncThunk(
     try {
         const data = await authApi.login(credentials)
         localStorage.setItem('userToken', data.token)
+        localStorage.setItem('username', data.username)
         return data
     } catch (error) {
         return rejectWithValue(error.response.data)
@@ -28,6 +29,7 @@ export const registerUser = createAsyncThunk(
     try {
         const data = await authApi.signup(userData)
         localStorage.setItem('userToken', data.token)
+        localStorage.setItem('username', data.username)
         return data
     } catch (error) {
         return rejectWithValue(error.response.data)

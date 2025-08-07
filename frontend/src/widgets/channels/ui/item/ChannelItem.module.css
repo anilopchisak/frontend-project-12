@@ -1,7 +1,7 @@
 .itemContainer {
     display: flex;
     gap: 1rem;
-    margin: 1rem 0;
+    padding: 0.7rem;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
