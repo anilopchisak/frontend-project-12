@@ -1,12 +1,11 @@
-import { Formik, Form } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useTranslation } from "react-i18next"
 import { signupValidationSchema } from "../../shared/yup/schemes"
-import FormField from "../../shared/ui/form/FormField"
 import { registerUser } from "../../features/auth/model/authSlice"
-
+import FormLayout from "../../shared/ui/form/FormLayout"
+import AuthFields from "../../features/auth/ui/AuthFields"
 
 const SignupPage = () => {
     const dispatch = useDispatch()
@@ -25,8 +24,9 @@ const SignupPage = () => {
     }, [token])
 
     return (
-        <div>
-            <Formik
+        <div className='content-container auth-container'>
+            <h1>{t('auth.titles.signup')}</h1>
+            <FormLayout
                 initialValues={{ 
                     username: '', 
                     password: '',
@@ -34,29 +34,12 @@ const SignupPage = () => {
                 }}
                 onSubmit={handleSubmit}
                 validationSchema={() => signupValidationSchema(t)}
+                submitText={t('auth.titles.signup')}
             >
-                <Form>
-                    <FormField 
-                        label={t('auth.elements.username')}
-                        name='username'
-                    />
-                    <FormField
-                        label={t('auth.elements.password')}
-                        name='password'
-                        type='password'
-                    />
-                    <FormField
-                        label={t('auth.elements.passwordConfirm')}
-                        name='confirmPassword'
-                        type='password'
-                    />
-                    <button type="submit">
-                        {t('auth.elements.signupText')}
-                    </button>
-                    {error && <div style={{ color: 'red' }}>{error}</div>}
-                    {status && <div style={{ color: 'blue' }}>{status}</div>}
-                </Form>
-            </Formik>
+                <AuthFields withConfirmPassword='true' />
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                {status && <div style={{ color: 'blue' }}>{status}</div>}
+            </FormLayout>                
         </div>
     )
 }

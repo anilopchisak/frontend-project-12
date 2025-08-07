@@ -1,0 +1,14 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messages {
+    display: flex;
+}
+
+.form {
+    flex-shrink: 0;
+    
+}

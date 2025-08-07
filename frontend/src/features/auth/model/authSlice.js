@@ -55,7 +55,7 @@ const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                state.user = action.payload.user
+                state.user = action.payload.username
                 state.token = action.payload.token
             })
             .addCase(loginUser.rejected, (state, action) => {
@@ -69,7 +69,7 @@ const authSlice = createSlice({
             })
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
-                state.user = action.payload.user
+                state.user = action.payload.username
                 state.token = action.payload.token
             })
             .addCase(registerUser.rejected, (state, action) => {

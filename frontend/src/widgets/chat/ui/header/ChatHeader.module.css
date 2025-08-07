@@ -1,0 +1,19 @@
+.header {
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.header::after {
+    content: '';
+    background-color: var(--color-text-spec);
+    display: block;
+    position: absolute;
+    top: 6rem;
+    left: 0;
+    height: 1px;
+    width: 100%;
+}

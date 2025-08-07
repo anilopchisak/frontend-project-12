@@ -3,13 +3,16 @@ import { useEffect } from "react"
 import { loadingStatus } from "../../shared/utils/statusConsts"
 import { getChannels, selectAllChannels } from "../../features/channels/model/channelsSlice"
 import { getMessages, selectAllMessages } from '../../features/messages/model/messagesSlice'
+import styles from './ChatPage.module.css'
+import Channels from "../../widgets/channels/Channels"
+import Chat from '../../widgets/chat/Chat'
 
 const ChatPage= () => {
     const dispatch = useDispatch()
-
     const { token } = useSelector(state => state.auth)
     const channels = useSelector(selectAllChannels)
     const messages = useSelector(selectAllMessages)
+
     const { 
         status: channelsStatus, 
         error: channelsError
@@ -37,26 +40,9 @@ const ChatPage= () => {
     }
 
     return (
-        <div className="chat-container">
-            <div className="channels-section">
-                <h3>Channels</h3>
-                <ul>
-                    {channels.map(channel => (
-                        <li key={channel.id}>{channel.name}</li>
-                    ))}
-                </ul>
-            </div>
-            
-            <div className="messages-section">
-                <h3>Messages</h3>
-                <ul>
-                    {messages.map(message => (
-                        <li key={message.id}>
-                            <strong>{message.user}:</strong> {message.content}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+        <div className={styles.container}>
+            <Channels />
+            <Chat />
         </div>
     )
 }

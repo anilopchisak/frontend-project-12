@@ -1,13 +1,13 @@
-import { Formik, Form } from "formik"
-import { NavLink, useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
 import { useTranslation } from 'react-i18next'
-
 import { loginValidationSchema } from "../../shared/yup/schemes"
-import FormField from "../../shared/ui/form/FormField"
 import { loginUser } from "../../features/auth/model/authSlice"
-import { loadingStatus } from "../../shared/utils/statusConsts"
+import FormLayout from "../../shared/ui/form/FormLayout"
+import AuthFields from "../../features/auth/ui/AuthFields"
+import Link from '../../shared/ui/link/Link'
+import cn from 'classnames'
 
 const LoginPage = () => {
     const dispatch = useDispatch()
@@ -26,35 +26,21 @@ const LoginPage = () => {
     }, [token])
 
     return (
-        <div>
-            <Formik
+        <div className='content-container auth-container'>
+            <h1>{t('auth.titles.login')}</h1>
+            <FormLayout
                 initialValues={{ username: '', password: '' }}
                 validationSchema={() => loginValidationSchema(t)}
-                onSubmit={handleSubmit}                
+                onSubmit={handleSubmit} 
+                submitText={t('auth.titles.login')}
             >
-                <Form>
-                    <FormField 
-                        label={t('auth.elements.username')}
-                        name='username'
-                    />
-                    <FormField
-                        label={t('auth.elements.password')}
-                        name='password'
-                        type='password'
-                    />
-                    <button 
-                        type="submit"
-                        disabled={status === loadingStatus.loading}
-                    >
-                        {t('auth.elements.loginText')}
-                    </button>
-                    {error && <div style={{ color: 'red' }}>{error}</div>}
-                    {status && <div style={{ color: 'blue' }}>{status}</div>}
-                </Form>
-            </Formik>
-            <NavLink to='/signup'>
-                {t('auth.elements.signupLink')}
-            </NavLink>
+                <AuthFields />
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+                {status && <div style={{ color: 'blue' }}>{status}</div>}
+            </FormLayout>
+            <Link url='/signup'>
+                {t('auth.links.signupPrompt')}
+            </Link>
         </div>
     )
 }

@@ -1,0 +1,20 @@
+.container {
+    padding: 1rem;
+    width: 60%;
+    margin-bottom: 1.5rem;
+}
+
+.username {
+    margin-bottom: 0.7rem;
+    font-weight: bold;
+}
+
+.user {
+    background-color: var(--color-background);
+    align-self: flex-end;
+}
+
+.notUser {
+    border: 1px solid var(--color-text-spec);
+    align-self: flex-start;
+}

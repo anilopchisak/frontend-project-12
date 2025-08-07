@@ -1,0 +1,19 @@
+.itemContainer {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.channelName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

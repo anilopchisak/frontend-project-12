@@ -1,0 +1,11 @@
+.authControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.username {
+    font-weight: bold;
+    color: var(--color-text-primary);
+}

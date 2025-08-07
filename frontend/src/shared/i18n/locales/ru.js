@@ -1,6 +1,19 @@
 export default {
     translation: {
         auth: {
+            form: {
+                username: 'Имя пользователя',
+                password: 'Пароль',
+                confirmPassword: 'Подтвердите пароль',
+            },
+            links: {
+                signupPrompt: 'Нет аккаунта? Зарегистрируйтесь',
+            },
+            titles: {
+                signup: 'Регистрация',
+                login: 'Войти',
+                logout: 'Выйти',
+            },
             yup: {
                 required: 'Обязательное поле',
                 username: {
@@ -13,25 +26,32 @@ export default {
                     containNumber: 'Пароль должен содержать хотя бы одну цифру',
                 },
                 confirmPassword: {
-                    mustMatch: 'Пароли не совпадают'
+                    mustMatch: 'Пароли не совпадают',
                 },
             },
-            elements: {
-                username: 'Имя пользователя',
-                password: 'Пароль',
-                passwordConfirm: 'Подтвердите пароль',
-                signupLink: 'Нет аккаунта? Зарегистрируйтесь',
-                signupText: 'Регистрация',
-                loginText: 'Войти',
-            }
         },
         notFound: {
-            elements: {
-                text: 'Страница не найдена',
-            },
+            title: 'Страница не найдена',
         },
+        
         chat: {
-
+            confirmMessage: 'Уверены? Действие необратимо.',
+            titles: {
+                channels: 'Каналы',
+                deleteChannel: 'Удалить канал',
+                renameChannel: 'Переименовать канал',
+            }, 
+            placeholders: {
+                newMessage: 'Введите сообщение...',
+                newName: 'Введите название канала...',
+            },
+            buttons: {
+                addChannel: 'Добавить',
+                deleteChannel: 'Удалить',
+                renameChannel: 'Переименовать',
+                cancel: 'Отмена',
+                send: 'Отправить',
+            },
         }
     }
 }

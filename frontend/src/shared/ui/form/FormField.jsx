@@ -1,27 +1,26 @@
 import { Field, ErrorMessage } from "formik"
+import styles from './FormField.module.css'
 
 const FormField = ({
     label, 
     name, 
     type = 'text',
     autoComplete = 'on',
-    fieldClass = 'form-control',
-    errorClass = 'invalid-feedback'
 }) => {
     return (
-        <div className='form-group'>
-            <label htmlFor={name}>{label}</label>
+        <div className={styles.formGroup}>
             <Field
                 type={type}
                 name={name}
                 id={name}
-                className={fieldClass}
+                className={styles.fieldClass}
                 autoComplete={autoComplete}
+                placeholder={label}
             />
             <ErrorMessage 
                 name={name} 
                 component='div'
-                className={errorClass}
+                className={styles.errorClass}
             />
         </div>
     )
