@@ -6,6 +6,7 @@ const FormField = ({
     name, 
     type = 'text',
     autoComplete = 'on',
+    autoFocus = false
 }) => {
     return (
         <div className={styles.formGroup}>
@@ -16,6 +17,7 @@ const FormField = ({
                 className={styles.fieldClass}
                 autoComplete={autoComplete}
                 placeholder={label}
+                autoFocus={autoFocus}
             />
             <ErrorMessage 
                 name={name} 

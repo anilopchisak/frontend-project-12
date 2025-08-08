@@ -23,18 +23,19 @@ export const getChannels = createAsyncThunk(
 
 export const addChannel = createAsyncThunk(
     'channels/addChannel',
-    async (channelData, token, { rejectWithValue }) => {
+    async ({channelData, token}, { rejectWithValue }) => {
         try {
+            console.log(channelData)
             return await channelsApi.create(channelData, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            return rejectWithValue(error.response?.data || { message: error.message })
         }
     }
 )
 
 export const editChannel = createAsyncThunk(
     'channel/editChannel',
-    async (channelData, token, { rejectWithValue }) => {
+    async ({channelData, token}, { rejectWithValue }) => {
         try {
             return await channelsApi.update(channelData, token)
         } catch (error) {
@@ -45,7 +46,7 @@ export const editChannel = createAsyncThunk(
 
 export const deleteChannel = createAsyncThunk(
     'channel/deleteChannel',
-    async (id, token, { rejectWithValue }) => {
+    async ({id, token}, { rejectWithValue }) => {
         try {
             return await channelsApi.remove(id, token)
         } catch (error) {
@@ -84,7 +85,9 @@ const channelsSlice = createSlice({
                 state.status = loadingStatus.loading
             })
             .addCase(addChannel.fulfilled, (state, action) => {
+                console.log(action.payload)
                 channelsAdapter.addOne(state, action.payload)
+                state.currentChannelId = action.payload.id
                 state.status = loadingStatus.succeeded
             })
             .addCase(addChannel.rejected, (state, action) => {

@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next"
-import FormField from "../../../shared/ui/form/FormField"
+import FormField from "../../../shared/ui/form/field/FormField"
+import styles from './AuthFields.module.css'
 
 const AuthFields = ({ withConfirmPassword = false }) => {
     const { t } = useTranslation()
 
     return (
-        <>
+        <div className={styles.form}>
             <FormField 
                 label={t('auth.form.username')}
                 name='username'
@@ -22,7 +23,7 @@ const AuthFields = ({ withConfirmPassword = false }) => {
                     type='password'
                 />
             )}
-        </>
+        </div>
     )
 }
 

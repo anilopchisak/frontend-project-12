@@ -23,3 +23,12 @@ export const signupValidationSchema = (t) => {
       .oneOf([Yup.ref('password'), null], t('auth.yup.confirmPassword.mustMatch')),
   })
 }
+
+export const newChannelNameValidationSchema = (t) => {
+  return Yup.object({
+    name: Yup.string()
+      .required(t('auth.yup.required'))
+      .min(3, t('auth.yup.username.min'))
+      .max(20, t('auth.yup.username.max'))
+  })
+}

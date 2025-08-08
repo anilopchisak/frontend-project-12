@@ -1,21 +1,28 @@
 import styles from './Button.module.css'
+import { buttonVariant } from '../../utils/buttonConsts'
 import cn from 'classnames'
-import { buttonVariant } from '../../utils/buttonVariantConsts'
 
-const Button = ({children, onClick, variant = buttonVariant.primary, type = 'submit'}) => {
-    const classes = cn({
-        [styles.button]: true,
-        [styles.primary]: variant === buttonVariant.primary,
-        [styles.secondary]: variant !== buttonVariant.primary,
-        [styles.secondaryBasic]: variant === buttonVariant.secondary,
-        [styles.secondaryLight]: variant === buttonVariant.secondaryLight,
-        [styles.secondaryDark]: variant === buttonVariant.secondaryDark,
-    })
+const variantClasses = {
+    [buttonVariant.primary]: styles.primary,
+    [buttonVariant.primaryWide]: cn(styles.primary, styles.w100),
+    [buttonVariant.secondary]: styles.secondary,
+    [buttonVariant.icon]: cn(styles.secondary, styles.icon),
+    [buttonVariant.dropdown]: styles.dropdown,
+}
+
+const Button = ({
+    children, 
+    variant = buttonVariant.primary, 
+    onClick, 
+    type = 'submit',
+    disabled = false
+}) => {
     return (
         <button 
-            className={classes} 
+            className={variantClasses[variant]} 
             onClick={onClick}
             type={type}
+            disabled={disabled}
         >
             {children}
         </button>

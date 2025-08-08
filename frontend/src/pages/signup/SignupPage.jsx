@@ -4,8 +4,9 @@ import { useNavigate } from "react-router"
 import { useTranslation } from "react-i18next"
 import { signupValidationSchema } from "../../shared/yup/schemes"
 import { registerUser } from "../../features/auth/model/authSlice"
-import FormLayout from "../../shared/ui/form/FormLayout"
+import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
+import { loadingStatus } from "../../shared/utils/statusConsts"
 
 const SignupPage = () => {
     const dispatch = useDispatch()
@@ -35,10 +36,11 @@ const SignupPage = () => {
                 onSubmit={handleSubmit}
                 validationSchema={() => signupValidationSchema(t)}
                 submitText={t('auth.titles.signup')}
+                isDisabledBtn={status === loadingStatus.loading}
             >
                 <AuthFields withConfirmPassword='true' />
                 {error && <div style={{ color: 'red' }}>{error}</div>}
-                {status && <div style={{ color: 'blue' }}>{status}</div>}
+                {/* {status && <div style={{ color: 'blue' }}>{status}</div>} */}
             </FormLayout>                
         </div>
     )

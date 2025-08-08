@@ -8,4 +8,5 @@
 .username {
     font-weight: bold;
     color: var(--color-text-primary);
+    margin: 0;
 }

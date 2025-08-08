@@ -15,7 +15,8 @@ export const getMessages = createAsyncThunk(
         try {
             return await messagesApi.fetchAll(token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorMessage = error?.response?.data?.message || 'Failed to get messages'
+            return rejectWithValue({message: errorMessage})
         }
     }
 )

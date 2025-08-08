@@ -1,4 +1,5 @@
 // import AppRouter from './providers/AppRouter'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { Routes, Route, Navigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import './styles/App.css'

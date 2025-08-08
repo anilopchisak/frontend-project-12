@@ -23,7 +23,10 @@ const Chat = () => {
 
     return (
         <div className={styles.container}>
-            <ChatHeader channel={currentChannel} messagesCount={messagesCount}/>
+            <ChatHeader 
+                channel={currentChannel} 
+                messagesCount={messagesCount}
+            />
             <MessageList 
                 currentMessages={currentMessages} 
                 currentChannelId={currentChannelId} 

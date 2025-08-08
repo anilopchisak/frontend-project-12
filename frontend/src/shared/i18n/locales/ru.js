@@ -40,10 +40,11 @@ export default {
                 channels: 'Каналы',
                 deleteChannel: 'Удалить канал',
                 renameChannel: 'Переименовать канал',
+                addChannel: 'Создать новый канал',
             }, 
             placeholders: {
                 newMessage: 'Введите сообщение...',
-                newName: 'Введите название канала...',
+                newChannel: 'Введите название канала...',
                 selectChannel: 'Выберите канал',
                 startChat: 'Напишите первое сообщение!'
             },
