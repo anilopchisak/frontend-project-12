@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import store from '../../app/providers/store'
 
 export const loginValidationSchema = (t) => {
   return Yup.object({
@@ -30,5 +31,10 @@ export const newChannelNameValidationSchema = (t) => {
       .required(t('auth.yup.required'))
       .min(3, t('auth.yup.username.min'))
       .max(20, t('auth.yup.username.max'))
+      .test('unique', t('chat.yup.channelExists'), function (value) {
+        const channels = store.getState().channels.entities
+        const channelNames = Object.values(channels).map(c => c.name.toLowerCase())
+        return !channelNames.includes(value.trim().toLowerCase())
+      })
   })
 }

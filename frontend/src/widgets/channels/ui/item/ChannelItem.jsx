@@ -5,13 +5,10 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
-import { formTypes } from '../../../../shared/utils/formTypeConsts'
-import { newChannelNameValidationSchema } from '../../../../shared/yup/schemes'
-import ModalWindow from '../../../../shared/ui/modal/ModalWindow'
-import FormLayout from '../../../../shared/ui/form/layout/FormLayout'
-import FormField from '../../../../shared/ui/form/field/FormField'
+import ModalChannelForm from '../modals/ModalChannelForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteChannel, editChannel } from '../../../../features/channels/model/channelsSlice'
+import ModalFormLayout from '../../../../shared/ui/form/modal/ModalFormLayout'
 
 const ChannelItem = ({channel, isCurrent, onSelect}) => {
     const [showModal, setShowModal] = useState(false)
@@ -72,31 +69,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
         [styles.defaultToggle]: true,
     })
 
-    const channelParams = {
-        isRemovable: channel.removable,
-        formParams: {
-            initialValues: {
-                rename: { name: '' },
-                delete: {},
-            }[modalType] ?? {},
-            handleFunc: {
-                rename: handleRename,
-                delete: handleDelete,
-            }[modalType] ?? handleDelete,
-            validationSchema: {
-                rename: () => newChannelNameValidationSchema(t),
-                delete: null,
-            }[modalType] ?? null,
-            children: {
-                rename: <FormField 
-                            label={t('chat.placeholders.newChannel')}
-                            name='name'
-                            autoFocus={true}
-                        />,
-                delete: <p>{t('chat.confirmMessage')}</p>,
-            }[modalType] ?? <p>{t('chat.confirmMessage')}</p>,
-        }
-    }
+    const isRemovable = channel.removable
 
     return (
         <>
@@ -104,7 +77,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                 <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
                     <span className={styles.channelName}># {channel.name}</span>
                 </Button>
-                {channelParams.isRemovable &&
+                {isRemovable &&
                     <>
                         <Dropdown.Toggle 
                             split 
@@ -127,22 +100,26 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                     </>
                 }
             </Dropdown>
-            <ModalWindow 
-                show={showModal} 
-                onConfirm={channelParams.formParams.handleFunc}
-                onCancel={handleCancel} 
-                header={t('chat.titles.addChannel')}
-            >
-                <FormLayout 
-                    initialValues={channelParams.formParams.initialValues}
-                    validationSchema={channelParams.formParams.validationSchema}
-                    onSubmit={channelParams.formParams.handleFunc}
-                    onCancel={handleCancel}
-                    formType={formTypes.modal}
+            {modalType === 'rename' &&
+                <ModalChannelForm 
+                    handleConfirm={handleRename}
+                    handleCancel={handleCancel}
+                    showModal={showModal}
+                    typeModal='rename'
+                />
+            }
+            {modalType === 'delete' &&
+                <ModalFormLayout 
+                    show={showModal} 
+                    onSubmit={handleDelete}
+                    onCancel={handleCancel} 
+                    header={t('chat.titles.deleteChannel')}
+                    initialValues={{}}
+                    validationSchema={null}
                 >
-                    {channelParams.formParams.children}
-                </FormLayout>
-            </ModalWindow>
+                    <p>{t('chat.confirmMessage')}</p>
+                </ModalFormLayout>
+            }
         </>
     )
 }

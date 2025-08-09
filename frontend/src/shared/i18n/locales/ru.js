@@ -55,6 +55,9 @@ export default {
                 cancel: 'Отмена',
                 send: 'Отправить',
             },
+            yup: {
+                channelExists: 'Канал с таким именем уже существует'
+            }
         }
     }
 }

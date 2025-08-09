@@ -97,7 +97,6 @@ const channelsSlice = createSlice({
                 state.status = loadingStatus.loading
             })
             .addCase(addChannel.fulfilled, (state, action) => {
-                console.log(action.payload)
                 channelsAdapter.addOne(state, action.payload)
                 state.currentChannelId = action.payload.id
                 state.status = loadingStatus.succeeded
@@ -129,9 +128,10 @@ const channelsSlice = createSlice({
             })
             .addCase(deleteChannel.fulfilled, (state, action) => {
                 channelsAdapter.removeOne(state, action.payload.id)
+                const remainingChannels = Object.values(state.entities)
                 state.currentChannelId = state.currentChannelId === action.payload.id 
-                    ? state.currentChannelId 
-                    : state.channels[0]?.id
+                    ? remainingChannels[0].id
+                    : state.currentChannelId 
                 state.status = loadingStatus.succeeded
             })
             .addCase(deleteChannel.rejected, (state, action) => {

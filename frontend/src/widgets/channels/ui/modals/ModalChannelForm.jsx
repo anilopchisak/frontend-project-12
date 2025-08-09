@@ -1,34 +1,36 @@
+import ModalFormLayout from "../../../../shared/ui/form/modal/ModalFormLayout"
+import { newChannelNameValidationSchema } from "../../../../shared/yup/schemes"
+import { useTranslation } from "react-i18next"
+import FormField from "../../../../shared/ui/form/field/FormField"
+
 const ModalChannelForm = ({
-    children,
     handleConfirm,
     handleCancel,
     showModal,
-
+    typeModal = 'create' // create, rename
 }) => {
-    const handleShowModal = () => setShowModal(true)
-    
-    const handleCancel = () => setShowModal(false)
+    const { t } = useTranslation()
+
+    const header = {
+        create: t('chat.titles.addChannel'),
+        rename: t('chat.titles.renameChannel')
+    }[typeModal] ?? t('chat.titles.addChannel')
+
     return (
-        <ModalWindow 
+        <ModalFormLayout 
             show={showModal} 
-            onConfirm={handleConfirm}
+            onSubmit={handleConfirm}
             onCancel={handleCancel} 
-            header={t('chat.titles.addChannel')}
+            header={header}
+            initialValues={{ name: '' }}
+            validationSchema={() => newChannelNameValidationSchema(t)}
         >
-            <FormLayout 
-                initialValues={{ name: '' }}
-                validationSchema={() => newChannelNameValidationSchema(t)}
-                onSubmit={handleConfirm}
-                onCancel={handleCancel}
-                formType={formTypes.modal}
-            >
-                <FormField 
-                    label={t('chat.placeholders.newChannel')}
-                    name='name'
-                    autoFocus={true}
-                />
-            </FormLayout>
-        </ModalWindow>
+            <FormField 
+                label={t('chat.placeholders.newChannel')}
+                name='name'
+                autoFocus={true}
+            />
+        </ModalFormLayout>
     )
 }
 

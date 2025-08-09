@@ -3,15 +3,10 @@ import styles from './ChannelsHeader.module.css'
 import { buttonVariant } from "../../../../shared/utils/buttonConsts"
 import { MdOutlinePlaylistAdd } from "react-icons/md"
 import { useState } from "react"
-import ModalWindow from "../../../../shared/ui/modal/ModalWindow"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { addChannel } from "../../../../features/channels/model/channelsSlice"
-import { newChannelNameValidationSchema } from '../../../../shared/yup/schemes'
-import FormLayout from '../../../../shared/ui/form/layout/FormLayout'
-import { formTypes } from "../../../../shared/utils/formTypeConsts"
-import { Field } from "formik"
-import FormField from "../../../../shared/ui/form/field/FormField"
+import ModalChannelForm from "../modals/ModalChannelForm"
 
 const ChannelsHeader = () => {
     const [showModal, setShowModal] = useState(false)
@@ -19,7 +14,6 @@ const ChannelsHeader = () => {
     const { token } = useSelector(state => state.auth)
 
     const dispatch = useDispatch()
-    const { t } = useTranslation()
 
     const handleShowModal = () => setShowModal(true)
     
@@ -41,26 +35,12 @@ const ChannelsHeader = () => {
                     <MdOutlinePlaylistAdd />
                 </Button>
             </div>
-            <ModalWindow 
-                show={showModal} 
-                onConfirm={handleConfirm}
-                onCancel={handleCancel} 
-                header={t('chat.titles.addChannel')}
-            >
-                <FormLayout 
-                    initialValues={{ name: '' }}
-                    validationSchema={() => newChannelNameValidationSchema(t)}
-                    onSubmit={handleConfirm}
-                    onCancel={handleCancel}
-                    formType={formTypes.modal}
-                >
-                    <FormField 
-                        label={t('chat.placeholders.newChannel')}
-                        name='name'
-                        autoFocus={true}
-                    />
-                </FormLayout>
-            </ModalWindow>
+            <ModalChannelForm 
+                handleConfirm={handleConfirm}
+                handleCancel={handleCancel}
+                showModal={showModal}
+                typeModal='create'
+            />
         </>
     )
 }

@@ -61,7 +61,14 @@ const messagesSlice = createSlice({
     reducers: {
         messageRecieved: (state, action) => {
             messagesAdapter.addOne(state, action.payload)
-        }
+        },
+        messagesDeletedByChannel: (state, action) => {
+            const channelId = action.payload
+            const idsToRemove = Object.values(state.entities)
+                .filter(msg => msg.channelId === channelId)
+                .map(msg => msg.id)
+            messagesAdapter.removeMany(state, idsToRemove)
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -123,7 +130,7 @@ const messagesSlice = createSlice({
     }
 })
 
-export const { messageRecieved } = messagesSlice.actions
+export const { messageRecieved, messagesDeletedByChannel } = messagesSlice.actions
 
 export const {
   selectAll: selectAllMessages,
