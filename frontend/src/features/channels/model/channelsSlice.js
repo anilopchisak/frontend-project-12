@@ -35,9 +35,9 @@ export const addChannel = createAsyncThunk(
 
 export const editChannel = createAsyncThunk(
     'channel/editChannel',
-    async ({channelData, token}, { rejectWithValue }) => {
+    async ({id, channelData, token}, { rejectWithValue }) => {
         try {
-            return await channelsApi.update(channelData, token)
+            return await channelsApi.update(id, channelData, token)
         } catch (error) {
             return rejectWithValue(error.response.data)
         }
@@ -69,7 +69,10 @@ const channelsSlice = createSlice({
             channelsAdapter.removeOne(state, action.payload.id)
         },
         channelRenamed: (state, action) => {
-            channelsAdapter.updateOne(state, action.payload.id)
+            channelsAdapter.updateOne(state, {
+                id: action.payload.id,
+                changes: action.payload
+            })
         },
     },
     extraReducers: (builder) => {

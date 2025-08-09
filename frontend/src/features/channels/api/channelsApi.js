@@ -6,7 +6,7 @@ const url = apiRoutes.channels
 const channelsApi = {
     fetchAll: (token) => apiClient.get(url, token),
     create: (channelData, token) => apiClient.post(url, channelData, token),
-    update: (channelData, token) => apiClient.patch(url, channelData, token),
+    update: (id, channelData, token) => apiClient.patch(url + `/${id}`, channelData, token),
     remove: (id, token) => apiClient.delete(url + `/${id}`, token),
 }
 

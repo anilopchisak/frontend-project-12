@@ -26,9 +26,8 @@ const ChannelsHeader = () => {
     const handleCancel = () => setShowModal(false)
 
     const handleConfirm = (values) => {
-        console.log(values)
         dispatch(addChannel({channelData: values, token}))
-        setShowModal(false)
+        handleCancel()
     }
 
     return (
