@@ -1,18 +1,33 @@
-// import Button from '../../../../shared/ui/button/Button'
-// import { buttonVariant } from '../../../../shared/utils/buttonConsts'
 import styles from './ChannelItem.module.css'
-// import { IoIosArrowDown } from "react-icons/io"
 import cn from 'classnames'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useTranslation } from 'react-i18next'
 
-const ChannelItem = ({channel, isActive, onSelect}) => {
-    const classes = cn({
-        [styles.itemContainer]: true,
-        [styles.selected]: isActive,
+const ChannelItem = ({channel, isCurrent, onSelect}) => {
+
+    const handleRename = () => {
+
+    }
+
+    const handleDelete =() => {
+
+    }
+
+    const { t } = useTranslation()
+
+    const classesChannel = cn({
+        [styles.item]: true,
+        [styles.default]: !isCurrent,
+        [styles.defaultChannel]: true,
     })
-    // const btnVariant = isActive 
-    //     ? buttonVariant.secondaryLight 
-    //     : buttonVariant.secondaryDark
+
+    const classesToggle = cn({
+        [styles.item]: true,
+        [styles.default]: !isCurrent,
+        [styles.defaultToggle]: true,
+    })
 
     const isChangeable = channel.removable === true
 
@@ -21,20 +36,37 @@ const ChannelItem = ({channel, isActive, onSelect}) => {
     }
 
     return (
-        <div 
-            className={classes} 
-            onClick={handleClick}
-        >
-            <p className={styles.channelName}>
-                # {channel.name}
-            </p>
-            {/* {isChangeable &&
-                <DropdownButton id="dropdown-basic-button" title="">
-                    <Dropdown.Item href="#/action-1">Rename</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
-                </DropdownButton>
-            } */}
-        </div>
+        <>
+            <Dropdown as={ButtonGroup}>
+                <Button variant="primary" onClick={handleClick} className={classesChannel}>
+                    <span className={styles.channelName}># {channel.name}</span>
+                </Button>
+                {isChangeable &&
+                    <>
+                        <Dropdown.Toggle 
+                            split 
+                            variant="primary" 
+                            id="dropdown-split-primary" 
+                            className={classesToggle}
+                        />
+                        <Dropdown.Menu>
+                            <Dropdown.Item 
+                                onClick={handleRename}
+                            >
+                                {t('chat.buttons.renameChannel')}
+                            </Dropdown.Item>
+                            <Dropdown.Item 
+                                onClick={handleDelete}
+                            >
+                                {t('chat.buttons.deleteChannel')}
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </>
+                }
+            </Dropdown>
+
+            
+        </>
     )
 }
 

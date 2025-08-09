@@ -18,7 +18,7 @@ const ChannelList = () => {
                 <ChannelItem 
                     key={channel.id}
                     channel={channel}
-                    isActive={channel.id === currentChannelId}
+                    isCurrent={channel.id === currentChannelId}
                     onSelect={handleSelect}
                 />
             )}

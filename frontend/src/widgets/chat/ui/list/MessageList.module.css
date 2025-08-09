@@ -4,7 +4,7 @@
     padding: 4rem 2rem;
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 2 * 5rem - 11rem);
+    max-height: calc(100vh - 2 * 5rem - 11rem - 2rem);
     width: 100%;
 }
 

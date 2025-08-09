@@ -3,5 +3,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     flex-grow: 1;
-    max-height: calc(100vh - 4rem - 11rem);
+    max-height: calc(100vh - 4rem - 11rem - 4rem);
+    display: flex;
+    flex-direction: column;
 }

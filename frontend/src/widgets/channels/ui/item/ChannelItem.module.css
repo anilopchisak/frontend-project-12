@@ -1,19 +1,33 @@
-.itemContainer {
+.item {
     display: flex;
-    gap: 1rem;
-    padding: 0.7rem;
-    justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0;
+    border: none;
 }
 
-.selected {
-    background-color: var(--color-primary);
-    color: white;
+.default {
+    background-color: transparent;
+    color: var(--color-text-primary);
+}
+
+.defaultChannel {
+    justify-content: flex-start;
+    min-width: 0;
+}
+
+.defaultToggle {
+    justify-content: center;
+    max-width: 3rem;
+    min-width: 3rem;
+    flex-shrink: 0;
 }
 
 .channelName {
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    min-width: 0;
 }

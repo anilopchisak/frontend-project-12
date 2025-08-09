@@ -61,7 +61,16 @@ const channelsSlice = createSlice({
     reducers: {
         setCurrentChannel: (state, action) => {
             state.currentChannelId = action.payload
-        }
+        },
+        channelRecieved: (state, action) => {
+            channelsAdapter.addOne(state, action.payload)
+        },
+        channelDeleted: (state, action) => {
+            channelsAdapter.removeOne(state, action.payload.id)
+        },
+        channelRenamed: (state, action) => {
+            channelsAdapter.updateOne(state, action.payload.id)
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -129,7 +138,12 @@ const channelsSlice = createSlice({
     }
 })
 
-export const { setCurrentChannel } = channelsSlice.actions
+export const { 
+    setCurrentChannel,
+    channelDeleted,
+    channelRecieved,
+    channelRenamed,
+ } = channelsSlice.actions
 
 export const {
   selectAll: selectAllChannels,

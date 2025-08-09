@@ -8,7 +8,7 @@ import LoginPage from '../pages/login/LoginPage.jsx'
 import SignupPage from '../pages/signup/SignupPage.jsx'
 import NotFoundPage from '../pages/not-found/NotFoundPage.jsx'
 import ChatPage from '../pages/chat/ChatPage.jsx'
-import MessagesSocketProvider from './providers/MessagesSocketProvider.jsx'
+import SocketProvider from './providers/SocketProvider.jsx'
 
 const App = () => {
   const token = useSelector((state) => state.auth.token)
@@ -17,7 +17,7 @@ const App = () => {
     <>
       <Header />
       <main id='content'>
-        {token && <MessagesSocketProvider />}
+        {token && <SocketProvider />}
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
