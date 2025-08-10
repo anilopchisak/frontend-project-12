@@ -7,7 +7,7 @@ import { loginUser } from "../../features/auth/model/authSlice"
 import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
 import Link from '../../shared/ui/link/Link'
-import { loadingStatus } from "../../shared/utils/statusConsts"
+import { loadingStatus } from "../../shared/config/statusConsts"
 
 const LoginPage = () => {
     const dispatch = useDispatch()

@@ -1,4 +1,4 @@
-import { routes } from "../routes.jsx"
+import { routes } from "../../routes.jsx"
 import { Routes, Route } from 'react-router'
 
 const AppRouter = () => {

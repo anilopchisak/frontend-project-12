@@ -1,8 +1,8 @@
 import { Formik, Form } from "formik"
 import Button from '../../button/Button'
 import styles from './FormLayout.module.css'
-import { buttonVariant } from '../../../utils/buttonConsts'
-import { formTypes } from "../../../utils/formTypeConsts"
+import { buttonVariant } from '../../../config/buttonConsts'
+import { formTypes } from "../../../config/formTypeConsts"
 import { useTranslation } from "react-i18next"
 
 const FormLayout = ({ 

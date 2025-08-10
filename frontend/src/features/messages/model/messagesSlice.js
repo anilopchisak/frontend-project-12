@@ -1,5 +1,5 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
-import { loadingStatus } from "../../../shared/utils/statusConsts"
+import { loadingStatus } from "../../../shared/config/statusConsts"
 import messagesApi from "../api/messagesApi"
 
 const messagesAdapter = createEntityAdapter()

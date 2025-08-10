@@ -2,13 +2,13 @@ import { IoSend } from "react-icons/io5"
 import { useTranslation } from "react-i18next"
 import { Field } from "formik"
 import styles from './MessageForm.module.css'
-import { buttonVariant } from '../../../../shared/utils/buttonConsts'
+import { buttonVariant } from '../../../../shared/config/buttonConsts'
 import FormLayout from "../../../../shared/ui/form/layout/FormLayout"
 import { useDispatch, useSelector } from "react-redux"
 import { addMessage } from "../../../../features/messages/model/messagesSlice"
 import { useRef, useState, useEffect } from "react"
-import { loadingStatus } from "../../../../shared/utils/statusConsts"
-import { formTypes } from "../../../../shared/utils/formTypeConsts"
+import { loadingStatus } from "../../../../shared/config/statusConsts"
+import { formTypes } from "../../../../shared/config/formTypeConsts"
 
 const MessageForm = () => {
     const [message, setMessage] = useState('')

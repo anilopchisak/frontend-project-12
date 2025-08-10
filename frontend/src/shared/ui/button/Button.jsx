@@ -1,5 +1,5 @@
 import styles from './Button.module.css'
-import { buttonVariant } from '../../utils/buttonConsts'
+import { buttonVariant } from '../../config/buttonConsts'
 import cn from 'classnames'
 
 const variantClasses = {

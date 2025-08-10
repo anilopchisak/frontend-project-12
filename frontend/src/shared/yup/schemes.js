@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-import store from '../../app/providers/store'
+import store from '../../app/providers/store/store.js'
 
 export const loginValidationSchema = (t) => {
   return Yup.object({

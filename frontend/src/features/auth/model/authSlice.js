@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { loadingStatus } from '../../../shared/utils/statusConsts.js'
+import { loadingStatus } from '../../../shared/config/statusConsts.js'
 import authApi from '../api/authApi.js'
 
 const initialState ={

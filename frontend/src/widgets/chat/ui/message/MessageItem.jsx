@@ -1,5 +1,6 @@
 import styles from './MessageItem.module.css'
 import cn from 'classnames'
+import { cleanText } from '../../../../shared/lib/profanityFilter'
 
 const MessageItem = ({isUser = true, message}) => {
     const classes = cn({
@@ -11,7 +12,7 @@ const MessageItem = ({isUser = true, message}) => {
     return (
         <div className={classes}>
             <p className={styles.username}>{message.username}</p>
-            <p>{message.body}</p>
+            <p>{cleanText(message.body)}</p>
         </div>
     )
 }

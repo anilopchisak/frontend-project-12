@@ -8,7 +8,7 @@ import LoginPage from '../pages/login/LoginPage.jsx'
 import SignupPage from '../pages/signup/SignupPage.jsx'
 import NotFoundPage from '../pages/not-found/NotFoundPage.jsx'
 import ChatPage from '../pages/chat/ChatPage.jsx'
-import SocketProvider from './providers/SocketProvider.jsx'
+import SocketProvider from './providers/socket/SocketProvider.jsx'
 
 const App = () => {
   const token = useSelector((state) => state.auth.token)

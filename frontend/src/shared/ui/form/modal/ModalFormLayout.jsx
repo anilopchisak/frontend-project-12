@@ -1,4 +1,4 @@
-import { formTypes } from "../../../utils/formTypeConsts"
+import { formTypes } from "../../../config/formTypeConsts"
 import ModalWindow from '../../../../shared/ui/modal/ModalWindow'
 import FormLayout from '../../../../shared/ui/form/layout/FormLayout'
 

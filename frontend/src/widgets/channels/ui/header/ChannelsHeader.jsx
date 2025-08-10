@@ -1,6 +1,6 @@
 import Button from "../../../../shared/ui/button/Button"
 import styles from './ChannelsHeader.module.css'
-import { buttonVariant } from "../../../../shared/utils/buttonConsts"
+import { buttonVariant } from "../../../../shared/config/buttonConsts"
 import { MdOutlinePlaylistAdd } from "react-icons/md"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"

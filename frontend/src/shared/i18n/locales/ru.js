@@ -30,10 +30,6 @@ export default {
                 },
             },
         },
-        notFound: {
-            title: 'Страница не найдена',
-        },
-        
         chat: {
             confirmMessage: 'Уверены? Действие необратимо.',
             titles: {
@@ -57,6 +53,38 @@ export default {
             },
             yup: {
                 channelExists: 'Канал с таким именем уже существует'
+            }
+        },
+        notFound: {
+            title: 'Страница не найдена',
+        },
+        errors: {
+            "auth": {
+                "invalidCredentials": "Неверный логин или пароль",
+                "tooManyAttempts": "Слишком много попыток входа. Попробуйте позже",
+                "userExists": "Пользователь с таким именем уже существует",
+                "invalidData": "Проверьте корректность введённых данных",
+            },
+            "chat": {
+                "noPermission": "У вас нет прав для отправки сообщений",
+            },
+            "channel": {
+                "noPermission": "Нет прав для изменения или удаления канала",
+                "notFound": "Канал не найден",
+            },
+            "common": {
+                "serverError": "Ошибка сервера. Попробуйте позже",
+            },
+        },
+        messages: {
+            "auth": {
+                "loginSuccess": "Добро пожаловать, {{username}}!",
+                "registerSuccess": "Регистрация прошла успешно!",
+            },
+            "channel": {
+                "created": "Канал \"{{channelName}}\" создан",
+                "updated": "Канал \"{{channelName}}\" переименован",
+                "deleted": "Канал \"{{channelName}}\" удалён",
             }
         }
     }

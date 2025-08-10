@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { loadingStatus } from "../../shared/utils/statusConsts"
+import { loadingStatus } from "../../shared/config/statusConsts"
 import { getChannels, selectAllChannels } from "../../features/channels/model/channelsSlice"
 import { getMessages, selectAllMessages } from '../../features/messages/model/messagesSlice'
 import styles from './ChatPage.module.css'

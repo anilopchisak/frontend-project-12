@@ -6,7 +6,7 @@ import { signupValidationSchema } from "../../shared/yup/schemes"
 import { registerUser } from "../../features/auth/model/authSlice"
 import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
-import { loadingStatus } from "../../shared/utils/statusConsts"
+import { loadingStatus } from "../../shared/config/statusConsts"
 
 const SignupPage = () => {
     const dispatch = useDispatch()

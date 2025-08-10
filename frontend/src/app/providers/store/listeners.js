@@ -1,6 +1,6 @@
 import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit'
-import { deleteChannel } from '../../features/channels/model/channelsSlice'
-import { messagesDeletedByChannel } from '../../features/messages/model/messagesSlice'
+import { deleteChannel } from '../../../features/channels/model/channelsSlice.js'
+import { messagesDeletedByChannel } from '../../../features/messages/model/messagesSlice.js'
 
 export const listenerMiddleware = createListenerMiddleware()
 
