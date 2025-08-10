@@ -8,6 +8,9 @@ import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
 import Link from '../../shared/ui/link/Link'
 import { loadingStatus } from "../../shared/config/statusConsts"
+import {showError, showSuccess} from "../../shared/toastify/toast.js";
+import {handleErrorTitle} from "../../shared/lib/handleNotifyTitle.js";
+import {clearStatus} from "../../features/auth/model/authSlice";
 
 const LoginPage = () => {
     const dispatch = useDispatch()
@@ -20,10 +23,24 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
+
+    }, [])
+
+    useEffect(() => {
         if (token) {
+            showSuccess(t('messages.auth.loginSuccess'))
             navigate('/')
+            dispatch(clearStatus())
         }
     }, [token])
+
+    useEffect(() => {
+        if (error) {
+            const title = handleErrorTitle(error, t)
+            showError(title)
+            dispatch(clearStatus())
+        }
+    }, [error])
 
     return (
         <div className='content-container auth-container'>
@@ -36,8 +53,6 @@ const LoginPage = () => {
                 isDisabledBtn={status === loadingStatus.loading}
             >
                 <AuthFields />
-                {error && <div style={{ color: 'red' }}>{error}</div>}
-                {/* {status && <div style={{ color: 'blue' }}>{status}</div>} */}
             </FormLayout>
             <Link url='/signup'>
                 {t('auth.links.signupPrompt')}

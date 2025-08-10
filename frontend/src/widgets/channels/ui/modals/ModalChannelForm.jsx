@@ -7,6 +7,7 @@ const ModalChannelForm = ({
     handleConfirm,
     handleCancel,
     showModal,
+    statusLoading,
     typeModal = 'create' // create, rename
 }) => {
     const { t } = useTranslation()
@@ -24,6 +25,7 @@ const ModalChannelForm = ({
             header={header}
             initialValues={{ name: '' }}
             validationSchema={() => newChannelNameValidationSchema(t)}
+            statusLoading={statusLoading}
         >
             <FormField 
                 label={t('chat.placeholders.newChannel')}

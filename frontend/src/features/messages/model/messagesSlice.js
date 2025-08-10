@@ -1,6 +1,7 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
 import { loadingStatus } from "../../../shared/config/statusConsts"
 import messagesApi from "../api/messagesApi"
+import {commonPending, commonRejected} from "../../../shared/lib/commonStatusHandlers.js";
 
 const messagesAdapter = createEntityAdapter()
 
@@ -11,31 +12,29 @@ const initialState = messagesAdapter.getInitialState({
 
 export const getMessages = createAsyncThunk(
     'messages/getMessages',
-    async (token, { rejectWithValue }) => {
+    async (token, {rejectWithValue}) => {
         try {
             return await messagesApi.fetchAll(token)
         } catch (error) {
-            const errorMessage = error?.response?.data?.message || 'Failed to get messages'
-            return rejectWithValue({message: errorMessage})
+            return rejectWithValue(error.response.data)
         }
     }
 )
 
 export const addMessage = createAsyncThunk(
     'messages/addMessage',
-    async ({ message, token }, { rejectWithValue }) => {
+    async ({ message, token }, {rejectWithValue}) => {
         try {
             return await messagesApi.create(message, token)
         } catch (error) {
-            const errorMessage = error?.response?.data?.message || 'Failed to send message'
-            return rejectWithValue({message: errorMessage})
+            return rejectWithValue(error.response.data)
         }
     }
 )
 
 export const editMessage = createAsyncThunk(
     'messages/editMessage',
-    async ({ id, message, token }, { rejectWithValue }) => {
+    async ({ id, message, token }, {rejectWithValue}) => {
         try {
             return await messagesApi.update(id, message, token)
         } catch (error) {
@@ -46,7 +45,7 @@ export const editMessage = createAsyncThunk(
 
 export const deleteMessage = createAsyncThunk(
     'messages/deleteMessage',
-    async ({ id, token }, { rejectWithValue }) => {
+    async ({ id, token }, {rejectWithValue}) => {
         try {
             return await messagesApi.remove(id, token)
         } catch (error) {
@@ -59,7 +58,7 @@ const messagesSlice = createSlice({
     name: 'messages',
     initialState,
     reducers: {
-        messageRecieved: (state, action) => {
+        messageReceived: (state, action) => {
             messagesAdapter.addOne(state, action.payload)
         },
         messagesDeletedByChannel: (state, action) => {
@@ -69,40 +68,30 @@ const messagesSlice = createSlice({
                 .map(msg => msg.id)
             messagesAdapter.removeMany(state, idsToRemove)
         },
+        messagesRemoveAll: (state) => {
+            messagesAdapter.removeAll(state)
+            state.status = loadingStatus.idle
+            state.error = null
+        }
     },
     extraReducers: (builder) => {
         builder
         // getMessages error handler
-            .addCase(getMessages.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null
-            })
+            .addCase(getMessages.pending, commonPending)
             .addCase(getMessages.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 messagesAdapter.setAll(state, action.payload)
             })
-            .addCase(getMessages.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(getMessages.rejected, commonRejected)
         // addMessage error handler
-            .addCase(addMessage.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null
-            })
+            .addCase(addMessage.pending, commonPending)
             .addCase(addMessage.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 messagesAdapter.addOne(state, action.payload)
             })
-            .addCase(addMessage.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(addMessage.rejected, commonRejected)
         // editMessage error handler
-            .addCase(editMessage.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null
-            })
+            .addCase(editMessage.pending, commonPending)
             .addCase(editMessage.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 messagesAdapter.updateOne(state, {
@@ -110,27 +99,22 @@ const messagesSlice = createSlice({
                     changes: action.payload
                 })
             })
-            .addCase(editMessage.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(editMessage.rejected, commonRejected)
         // deleteMessage error handler
-            .addCase(deleteMessage.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null
-            })
+            .addCase(deleteMessage.pending, commonPending)
             .addCase(deleteMessage.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 messagesAdapter.removeOne(state, action.payload.id)
             })
-            .addCase(deleteMessage.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(deleteMessage.rejected, commonRejected)
     }
 })
 
-export const { messageRecieved, messagesDeletedByChannel } = messagesSlice.actions
+export const {
+    messageReceived,
+    messagesDeletedByChannel,
+    messagesRemoveAll,
+} = messagesSlice.actions
 
 export const {
   selectAll: selectAllMessages,

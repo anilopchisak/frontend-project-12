@@ -5,7 +5,8 @@ const axiosInstance = axios.create({
   timeout: 5000,
 })
 
-const getAuthorizationHeader = (token) => token ? { Authorization: `Bearer ${token}` } : {}
+const getAuthorizationHeader = (token) =>
+    token ? { Authorization: `Bearer ${token}` } : {}
 
 export default {
   get: (url, token) => axiosInstance.get(

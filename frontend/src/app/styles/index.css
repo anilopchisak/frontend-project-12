@@ -28,10 +28,6 @@
   --color-error: #ef4444;
   --color-warning: #f59e0b;
 
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -47,5 +43,4 @@
 html, body {
   height: 100%;
   width: 100%;
-  /* overflow: hidden; */
 }

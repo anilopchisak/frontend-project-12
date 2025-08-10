@@ -10,6 +10,7 @@ const ModalFormLayout = ({
     header,
     initialValues,
     validationSchema,
+    statusLoading
 }
 ) => {
     return (
@@ -25,6 +26,7 @@ const ModalFormLayout = ({
                 onSubmit={onSubmit}
                 onCancel={onCancel}
                 formType={formTypes.modal}
+                isDisabledBtn={statusLoading}
             >
                 {children}
             </FormLayout>

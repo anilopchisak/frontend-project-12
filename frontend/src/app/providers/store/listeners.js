@@ -1,6 +1,7 @@
 import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit'
-import { deleteChannel } from '../../../features/channels/model/channelsSlice.js'
-import { messagesDeletedByChannel } from '../../../features/messages/model/messagesSlice.js'
+import {channelsRemoveAll, deleteChannel} from '../../../features/channels/model/channelsSlice.js'
+import {messagesDeletedByChannel, messagesRemoveAll} from '../../../features/messages/model/messagesSlice.js'
+import {logout} from "../../../features/auth/model/authSlice.js";
 
 export const listenerMiddleware = createListenerMiddleware()
 
@@ -9,5 +10,13 @@ listenerMiddleware.startListening({
     effect: async (action, listenerApi) => {
         const deletedChannelId = action.payload.id
         listenerApi.dispatch(messagesDeletedByChannel(deletedChannelId))
+    }
+})
+
+listenerMiddleware.startListening({
+    matcher: isAnyOf(logout),
+    effect: async (_, listenerApi) => {
+        listenerApi.dispatch(channelsRemoveAll())
+        listenerApi.dispatch(messagesRemoveAll())
     }
 })

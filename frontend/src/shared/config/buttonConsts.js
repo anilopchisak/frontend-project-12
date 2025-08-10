@@ -5,8 +5,3 @@ export const buttonVariant = {
     icon: 'icon',
     dropdown: 'dropdown',
 }
-
-// primary: 'primary',
-//     secondary: 'secondary',
-//     secondaryLight: 'secondaryLight',
-//     secondaryDark: 'secondaryDark',

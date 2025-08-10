@@ -1,6 +1,8 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
 import { loadingStatus } from "../../../shared/config/statusConsts"
 import channelsApi from "../api/channelsApi"
+import {commonPending, commonRejected} from "../../../shared/lib/commonStatusHandlers.js";
+import {lastActionChannels} from "../../../shared/config/lastActionConsts.js";
 
 const channelsAdapter = createEntityAdapter()
 
@@ -8,11 +10,12 @@ const initialState = channelsAdapter.getInitialState({
     currentChannelId: null,
     status: loadingStatus.idle,
     error: null,
+    lastAction: null,
 })
 
 export const getChannels = createAsyncThunk(
     'channels/getChannels',
-    async (token, { rejectWithValue }) => {
+    async (token, {rejectWithValue}) => {
         try {
             return await channelsApi.fetchAll(token)
         } catch (error) {
@@ -23,19 +26,18 @@ export const getChannels = createAsyncThunk(
 
 export const addChannel = createAsyncThunk(
     'channels/addChannel',
-    async ({channelData, token}, { rejectWithValue }) => {
+    async ({channelData, token}, {rejectWithValue}) => {
         try {
-            console.log(channelData)
             return await channelsApi.create(channelData, token)
         } catch (error) {
-            return rejectWithValue(error.response?.data || { message: error.message })
+            return rejectWithValue(error.response.data)
         }
     }
 )
 
 export const editChannel = createAsyncThunk(
     'channel/editChannel',
-    async ({id, channelData, token}, { rejectWithValue }) => {
+    async ({id, channelData, token}, {rejectWithValue}) => {
         try {
             return await channelsApi.update(id, channelData, token)
         } catch (error) {
@@ -46,7 +48,7 @@ export const editChannel = createAsyncThunk(
 
 export const deleteChannel = createAsyncThunk(
     'channel/deleteChannel',
-    async ({id, token}, { rejectWithValue }) => {
+    async ({id, token}, {rejectWithValue}) => {
         try {
             return await channelsApi.remove(id, token)
         } catch (error) {
@@ -62,11 +64,15 @@ const channelsSlice = createSlice({
         setCurrentChannel: (state, action) => {
             state.currentChannelId = action.payload
         },
-        channelRecieved: (state, action) => {
+        channelReceived: (state, action) => {
             channelsAdapter.addOne(state, action.payload)
         },
         channelDeleted: (state, action) => {
             channelsAdapter.removeOne(state, action.payload.id)
+            const remainingChannels = Object.values(state.entities)
+            state.currentChannelId = state.currentChannelId === action.payload.id
+                ? remainingChannels[0].id
+                : state.currentChannelId
         },
         channelRenamed: (state, action) => {
             channelsAdapter.updateOne(state, {
@@ -74,58 +80,47 @@ const channelsSlice = createSlice({
                 changes: action.payload
             })
         },
+        channelsRemoveAll: (state) => {
+            channelsAdapter.removeAll(state)
+            state.currentChannelId = null
+            state.status = loadingStatus.idle
+            state.error = null
+
+        },
     },
     extraReducers: (builder) => {
         builder
         // getChannels error handler
-            .addCase(getChannels.pending, (state) => {
-                state.error = null
-                state.status = loadingStatus.loading
-            })
+            .addCase(getChannels.pending, commonPending)
             .addCase(getChannels.fulfilled, (state, action) => {
                 channelsAdapter.setAll(state, action.payload)
                 state.currentChannelId = action.payload[0]?.id
                 state.status = loadingStatus.succeeded
+                state.lastAction = lastActionChannels.get
             })
-            .addCase(getChannels.rejected, (state, action) => {
-                state.error = action.payload.message
-                state.status = loadingStatus.failed
-            })
+            .addCase(getChannels.rejected, commonRejected)
         // addChannel error handler
-            .addCase(addChannel.pending, (state) => {
-                state.error = null
-                state.status = loadingStatus.loading
-            })
+            .addCase(addChannel.pending, commonPending)
             .addCase(addChannel.fulfilled, (state, action) => {
                 channelsAdapter.addOne(state, action.payload)
                 state.currentChannelId = action.payload.id
                 state.status = loadingStatus.succeeded
+                state.lastAction = lastActionChannels.create
             })
-            .addCase(addChannel.rejected, (state, action) => {
-                state.error = action.payload.message
-                state.status = loadingStatus.failed
-            })
+            .addCase(addChannel.rejected, commonRejected)
         // editChannel error handler
-            .addCase(editChannel.pending, (state) => {
-                state.error = null
-                state.status = loadingStatus.loading
-            })
+            .addCase(editChannel.pending, commonPending)
             .addCase(editChannel.fulfilled, (state, action) => {
                 channelsAdapter.updateOne(state, {
                     id: action.payload.id,
                     changes: action.payload
                 })
                 state.status = loadingStatus.succeeded
+                state.lastAction = lastActionChannels.rename
             })
-            .addCase(editChannel.rejected, (state, action) => {
-                state.error = action.payload.message
-                state.status = loadingStatus.failed
-            })
+            .addCase(editChannel.rejected, commonRejected)
         // deleteChannel error handler
-            .addCase(deleteChannel.pending, (state) => {
-                state.error = null
-                state.status = loadingStatus.loading
-            })
+            .addCase(deleteChannel.pending, commonPending)
             .addCase(deleteChannel.fulfilled, (state, action) => {
                 channelsAdapter.removeOne(state, action.payload.id)
                 const remainingChannels = Object.values(state.entities)
@@ -133,19 +128,18 @@ const channelsSlice = createSlice({
                     ? remainingChannels[0].id
                     : state.currentChannelId 
                 state.status = loadingStatus.succeeded
+                state.lastAction = lastActionChannels.delete
             })
-            .addCase(deleteChannel.rejected, (state, action) => {
-                state.error = action.payload.message
-                state.status = loadingStatus.failed
-            })
+            .addCase(deleteChannel.rejected, commonRejected)
     }
 })
 
 export const { 
     setCurrentChannel,
     channelDeleted,
-    channelRecieved,
+    channelReceived,
     channelRenamed,
+    channelsRemoveAll,
  } = channelsSlice.actions
 
 export const {

@@ -9,12 +9,16 @@ import ModalChannelForm from '../modals/ModalChannelForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteChannel, editChannel } from '../../../../features/channels/model/channelsSlice'
 import ModalFormLayout from '../../../../shared/ui/form/modal/ModalFormLayout'
+import {cleanText} from "../../../../shared/lib/profanityFilter.js";
+import {loadingStatus} from "../../../../shared/config/statusConsts.js";
 
 const ChannelItem = ({channel, isCurrent, onSelect}) => {
     const [showModal, setShowModal] = useState(false)
     const [modalType, setModalType] = useState(null) // rename, delete
 
     const { token } = useSelector(state => state.auth)
+
+    const {status} = useSelector(state => state.channels)
 
     const dispatch = useDispatch()
 
@@ -75,7 +79,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
         <>
             <Dropdown as={ButtonGroup}>
                 <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
-                    <span className={styles.channelName}># {channel.name}</span>
+                    <span className={styles.channelName}># {cleanText(channel.name)}</span>
                 </Button>
                 {isRemovable &&
                     <>
@@ -106,6 +110,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                     handleCancel={handleCancel}
                     showModal={showModal}
                     typeModal='rename'
+                    statusLoading={status === loadingStatus.loading}
                 />
             }
             {modalType === 'delete' &&
@@ -116,6 +121,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                     header={t('chat.titles.deleteChannel')}
                     initialValues={{}}
                     validationSchema={null}
+                    statusLoading={status === loadingStatus.loading}
                 >
                     <p>{t('chat.confirmMessage')}</p>
                 </ModalFormLayout>

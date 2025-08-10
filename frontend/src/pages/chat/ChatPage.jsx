@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { loadingStatus } from "../../shared/config/statusConsts"
-import { getChannels, selectAllChannels } from "../../features/channels/model/channelsSlice"
-import { getMessages, selectAllMessages } from '../../features/messages/model/messagesSlice'
+import { getChannels } from "../../features/channels/model/channelsSlice"
+import { getMessages } from '../../features/messages/model/messagesSlice'
 import styles from './ChatPage.module.css'
 import Channels from "../../widgets/channels/Channels"
 import Chat from '../../widgets/chat/Chat'
+import {showError} from "../../shared/toastify/toast.js";
+import {handleErrorTitle} from "../../shared/lib/handleNotifyTitle.js";
 
 const ChatPage= () => {
     const dispatch = useDispatch()
     const { token } = useSelector(state => state.auth)
-    const channels = useSelector(selectAllChannels)
-    const messages = useSelector(selectAllMessages)
 
     const { 
         status: channelsStatus, 
@@ -23,21 +23,22 @@ const ChatPage= () => {
     } = useSelector(state => state.messages)
     
     useEffect(() => {
-        if (channelsStatus === loadingStatus.idle) {
+        if (channelsStatus === loadingStatus.idle && messagesStatus === loadingStatus.idle) {
             dispatch(getChannels(token))
-        }
-        if (messagesStatus === loadingStatus.idle) {
             dispatch(getMessages(token))
         }
     }, [channelsStatus, messagesStatus])
 
-    if (channelsError) {
-        return <div>Error loading channels: {channelsError}</div>;
-    }
-    
-    if (messagesError) {
-        return <div>Error loading messages: {messagesError}</div>;
-    }
+    useEffect(() => {
+        if (channelsError) {
+            const title = handleErrorTitle(channelsError)
+            showError(title)
+        }
+        if (messagesError) {
+            const title = handleErrorTitle(messagesError)
+            showError(title)
+        }
+    }, [messagesError, channelsError])
 
     return (
         <div className={styles.container}>

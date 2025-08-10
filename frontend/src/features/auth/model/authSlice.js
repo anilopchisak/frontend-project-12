@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { loadingStatus } from '../../../shared/config/statusConsts.js'
 import authApi from '../api/authApi.js'
+import {commonPending, commonRejected} from "../../../shared/lib/commonStatusHandlers.js";
 
 const initialState ={
     user: localStorage.getItem('username') ?? null,
@@ -46,40 +47,33 @@ const authSlice = createSlice({
             state.token = null
             state.status = loadingStatus.idle
             localStorage.removeItem('userToken')
+            localStorage.removeItem('username')
+        },
+        clearStatus: (state) => {
+            state.status = loadingStatus.idle
+            state.error = null
         },
     },
     extraReducers: (builder) => {
         builder 
         // loginUser handler
-            .addCase(loginUser.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null
-            })
+            .addCase(loginUser.pending, commonPending)
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 state.user = action.payload.username
                 state.token = action.payload.token
             })
-            .addCase(loginUser.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(loginUser.rejected, commonRejected)
         // signupUser handler
-            .addCase(registerUser.pending, (state) => {
-                state.status = loadingStatus.loading
-                state.error = null;
-            })
+            .addCase(registerUser.pending, commonPending)
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.status = loadingStatus.succeeded
                 state.user = action.payload.username
                 state.token = action.payload.token
             })
-            .addCase(registerUser.rejected, (state, action) => {
-                state.status = loadingStatus.failed
-                state.error = action.payload.message
-            })
+            .addCase(registerUser.rejected, commonRejected)
     }
 })
 
-export const { logout } = authSlice.actions
+export const { logout, clearStatus } = authSlice.actions
 export default authSlice.reducer

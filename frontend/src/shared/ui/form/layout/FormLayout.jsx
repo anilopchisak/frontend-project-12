@@ -1,4 +1,4 @@
-import { Formik, Form } from "formik"
+import {Formik, Form} from "formik"
 import Button from '../../button/Button'
 import styles from './FormLayout.module.css'
 import { buttonVariant } from '../../../config/buttonConsts'
@@ -42,7 +42,7 @@ const FormLayout = ({
         <Formik 
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
+            onSubmit={(values, formikHelpers) => onSubmit(values, formikHelpers)}
             className={styles.form}
         >
             <Form className={formClass}>

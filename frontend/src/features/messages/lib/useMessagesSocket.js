@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import socket from '../../../shared/lib/socket'
-import { messageRecieved } from '../model/messagesSlice'
+import { messageReceived } from '../model/messagesSlice'
 
 const useMessagesSocket = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const handleNewMessage = (message) => {
-      dispatch(messageRecieved(message))
+      dispatch(messageReceived(message))
     }
 
     socket.on('newMessage', handleNewMessage)

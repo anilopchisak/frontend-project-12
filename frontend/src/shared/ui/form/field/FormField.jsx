@@ -3,7 +3,7 @@ import styles from './FormField.module.css'
 
 const FormField = ({
     label, 
-    name, 
+    name,
     type = 'text',
     autoComplete = 'on',
     autoFocus = false
@@ -14,16 +14,19 @@ const FormField = ({
                 type={type}
                 name={name}
                 id={name}
+                placeholder={label}
                 className={styles.fieldClass}
                 autoComplete={autoComplete}
-                placeholder={label}
                 autoFocus={autoFocus}
             />
-            <ErrorMessage 
-                name={name} 
-                component='div'
-                className={styles.errorClass}
-            />
+            <div className={styles.errorContainer}>
+                <ErrorMessage
+                    name={name}
+                    component='p'
+                    className={styles.errorClass}
+                />
+            </div>
+
         </div>
     )
 }

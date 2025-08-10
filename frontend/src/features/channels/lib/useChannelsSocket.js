@@ -1,14 +1,14 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import socket from '../../../shared/lib/socket'
-import { channelDeleted, channelRecieved, channelRenamed } from "../model/channelsSlice"
+import { channelDeleted, channelReceived, channelRenamed } from "../model/channelsSlice"
 
 const useChannelsSocket = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         const handleNewChannel = (channel) => {
-            dispatch(channelRecieved(channel))
+            dispatch(channelReceived(channel))
         }
 
         const handleDeleteChannel = (data) => {

@@ -2,16 +2,14 @@ import { IoSend } from "react-icons/io5"
 import { useTranslation } from "react-i18next"
 import { Field } from "formik"
 import styles from './MessageForm.module.css'
-import { buttonVariant } from '../../../../shared/config/buttonConsts'
 import FormLayout from "../../../../shared/ui/form/layout/FormLayout"
 import { useDispatch, useSelector } from "react-redux"
 import { addMessage } from "../../../../features/messages/model/messagesSlice"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { loadingStatus } from "../../../../shared/config/statusConsts"
 import { formTypes } from "../../../../shared/config/formTypeConsts"
 
 const MessageForm = () => {
-    const [message, setMessage] = useState('')
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const inputRef = useRef()
@@ -21,25 +19,28 @@ const MessageForm = () => {
     const channelId = useSelector(state => state.channels.currentChannelId)
 
     const handleResetInputField = () => {
-        setMessage('')
         inputRef.current.focus()
     }
-    
-    const handleChange = (message) => {
-        setMessage(message)
-    }  
 
-    const handleSubmit = () => {
-        if (!message.trim()) return
+    const handleSubmit = ({messageField}, {resetForm}) => {
+        if (!messageField.trim()) return
 
         const newMessage = {
-            body: message,
+            body: messageField,
             channelId,
             username: user,
         }
 
         dispatch(addMessage({message: newMessage, token}))
         handleResetInputField()
+        resetForm()
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            e.target.form
+        }
     }
 
     useEffect(() => {
@@ -59,10 +60,9 @@ const MessageForm = () => {
                 <Field
                     as='textarea'
                     name='messageField'
-                    value={message}
+                    onKeyDown={(e) => handleKeyDown(e)}
                     className={styles.fieldClass}
                     placeholder={t('chat.placeholders.newMessage')}
-                    onChange={(e) => handleChange(e.target.value)}
                     ref={inputRef}
                     autoFocus
                 />
