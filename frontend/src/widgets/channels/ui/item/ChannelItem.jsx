@@ -13,30 +13,19 @@ import {cleanText} from "../../../../shared/lib/profanityFilter.js";
 import {loadingStatus} from "../../../../shared/config/statusConsts.js";
 
 const ChannelItem = ({channel, isCurrent, onSelect}) => {
-    const [showModal, setShowModal] = useState(false)
-    const [modalType, setModalType] = useState(null) // rename, delete
+    const [showRenameModal, setShowRenameModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     const { token } = useSelector(state => state.auth)
-
     const {status} = useSelector(state => state.channels)
 
     const dispatch = useDispatch()
 
-    const handleShowModal = () => setShowModal(true)
-    const handleCancel = () => setShowModal(false)
+    const handleShowRenameModal = () => setShowRenameModal(true)
+    const handleRenameCancel = () => setShowRenameModal(false)
 
-    const setRenameType = () => setModalType('rename')
-    const setDeleteType = () => setModalType('delete')
-
-    const openRenameModal = () => {
-        setRenameType()
-        handleShowModal()
-    }
-
-    const openDeleteModal = () => {
-        setDeleteType()
-        handleShowModal()
-    }
+    const handleShowDeleteModal = () => setShowDeleteModal(true)
+    const handleDeleteCancel = () => setShowDeleteModal(false)
 
     const handleRename = (values) => {
         dispatch(editChannel({
@@ -44,7 +33,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
             channelData: values,
             token,
         }))
-        handleCancel()
+        handleRenameCancel()
     }
 
     const handleDelete = () => {
@@ -52,7 +41,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
             id: channel.id, 
             token,
         }))
-        handleCancel()
+        handleDeleteCancel()
     }
 
     const handleChangeChannel = () => {
@@ -91,12 +80,12 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                         />
                         <Dropdown.Menu>
                             <Dropdown.Item 
-                                onClick={openRenameModal}
+                                onClick={handleShowRenameModal}
                             >
                                 {t('chat.buttons.renameChannel')}
                             </Dropdown.Item>
                             <Dropdown.Item 
-                                onClick={openDeleteModal}
+                                onClick={handleShowDeleteModal}
                             >
                                 {t('chat.buttons.deleteChannel')}
                             </Dropdown.Item>
@@ -104,28 +93,23 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                     </>
                 }
             </Dropdown>
-            {modalType === 'rename' &&
-                <ModalChannelForm 
-                    handleConfirm={handleRename}
-                    handleCancel={handleCancel}
-                    showModal={showModal}
-                    typeModal='rename'
-                    statusLoading={status === loadingStatus.loading}
-                />
-            }
-            {modalType === 'delete' &&
-                <ModalFormLayout 
-                    show={showModal} 
-                    onSubmit={handleDelete}
-                    onCancel={handleCancel} 
-                    header={t('chat.titles.deleteChannel')}
-                    initialValues={{}}
-                    validationSchema={null}
-                    statusLoading={status === loadingStatus.loading}
-                >
-                    <p>{t('chat.confirmMessage')}</p>
-                </ModalFormLayout>
-            }
+            <ModalChannelForm
+                showModal={showRenameModal}
+                handleConfirm={handleRename}
+                handleCancel={handleRenameCancel}
+                statusLoading={status === loadingStatus.loading}
+            />
+            <ModalFormLayout
+                show={showDeleteModal}
+                onSubmit={handleDelete}
+                onCancel={handleDeleteCancel}
+                header={t('chat.titles.deleteChannel')}
+                initialValues={{}}
+                validationSchema={null}
+                statusLoading={status === loadingStatus.loading}
+            >
+                <p>{t('chat.confirmMessage')}</p>
+            </ModalFormLayout>
         </>
     )
 }
