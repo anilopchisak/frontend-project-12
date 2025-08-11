@@ -1,6 +1,6 @@
 import { formTypes } from "../../../config/formTypeConsts"
 import FormLayout from '../../../../shared/ui/form/layout/FormLayout'
-import FormField from "../field/FormField.jsx";
+import FormField from "../field/FormField.jsx"
 
 const ModalFormLayout = ({
     onSubmit,

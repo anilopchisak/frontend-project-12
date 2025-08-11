@@ -41,6 +41,7 @@ const FormLayout = ({
             validationSchema={validationSchema}
             onSubmit={(values, formikHelpers) => onSubmit(values, formikHelpers)}
             className={styles.form}
+            validateOnBlur={false}
         >
             <Form className={formClass}>
                 {children}

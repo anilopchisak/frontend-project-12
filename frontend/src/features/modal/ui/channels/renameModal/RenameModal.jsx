@@ -15,7 +15,7 @@ const RenameModal = ({id, name, onCancel}) => {
     const initialValues = { [fieldName]: name }
     const validationSchema = () => newChannelNameValidationSchema(t)
     const statusLoading = status === loadingStatus.loading
-    const label = null
+    const label = t('chat.labels.channelName')
     const submitText = t('chat.buttons.send')
 
     const handleSubmit = (values, {resetForm}) => {

@@ -63,7 +63,7 @@ export default {
                 send: 'Отправить',
             },
             yup: {
-                channelExists: 'Канал с таким именем уже существует'
+                channelExists: 'Должно быть уникальным'
             }
         },
         notFound: {
@@ -71,7 +71,7 @@ export default {
         },
         errors: {
             auth: {
-                conflict: "Пользователь с таким именем уже существует",
+                conflict: "Такой пользователь уже существует",
                 unauthorized: "Неверные имя пользователя или пароль",
             },
             serverError: 'Ошибка соединения',
