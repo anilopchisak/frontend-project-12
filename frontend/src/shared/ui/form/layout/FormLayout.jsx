@@ -1,9 +1,8 @@
 import {Formik, Form} from "formik"
-import Button from '../../button/Button'
 import styles from './FormLayout.module.css'
 import { buttonVariant } from '../../../config/buttonConsts'
 import { formTypes } from "../../../config/formTypeConsts"
-import { useTranslation } from "react-i18next"
+import ButtonGroup from "../../buttonGroup/ButtonGroup.jsx";
 
 const FormLayout = ({ 
     children, 
@@ -36,8 +35,6 @@ const FormLayout = ({
         [formTypes.modal]: 2,
     }[formType] ?? 1
 
-    const { t } = useTranslation()
-
     return (
         <Formik 
             initialValues={initialValues}
@@ -47,29 +44,13 @@ const FormLayout = ({
         >
             <Form className={formClass}>
                 {children}
-                {btnCount === 1 &&
-                   <Button variant={btnVariant} disabled={isDisabledBtn}>
-                        {submitText}
-                    </Button> 
-                }
-                {btnCount === 2 &&
-                    <div className={styles.modalButtons}>
-                        <Button 
-                            type='button'
-                            variant={btnVariant.cancel} 
-                            onClick={onCancel}
-                        >
-                            {t('chat.buttons.cancel')}
-                        </Button>
-                        <Button
-                            variant={btnVariant.submit}
-                            type='submit'
-                            disabled={isDisabledBtn}
-                        >
-                            {t('chat.buttons.send')}
-                        </Button>
-                    </div>
-                }
+                <ButtonGroup
+                    btnCount={btnCount}
+                    btnVariant={btnVariant}
+                    isDisabledBtn={isDisabledBtn}
+                    submitText={submitText}
+                    onCancel={onCancel}
+                />
             </Form>
         </Formik>
     )

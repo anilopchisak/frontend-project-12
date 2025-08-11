@@ -1,40 +1,21 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { useNavigate } from "react-router"
 import { useTranslation } from "react-i18next"
 import { signupValidationSchema } from "../../shared/yup/schemes"
-import {clearStatus, registerUser} from "../../features/auth/model/authSlice"
+import {registerUser} from "../../features/auth/model/authSlice"
 import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
 import { loadingStatus } from "../../shared/config/statusConsts"
-import {showError, showSuccess} from "../../shared/toastify/toast.js";
-import {handleErrorTitle} from "../../shared/lib/handleNotifyTitle.js";
+import useAuthToast from "../../widgets/toasts/hooks/useAuthToast.js";
 
 const SignupPage = () => {
+    useAuthToast()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const { t } = useTranslation()
-    const { token, status, error } = useSelector(state => state.auth)
+    const { status } = useSelector(state => state.auth)
 
     const handleSubmit = ({username, password}) => {
         dispatch(registerUser({username, password}))
     }
-
-    useEffect(() => {
-        if (token) {
-            showSuccess(t('messages.auth.registerSuccess'))
-            navigate('/')
-            dispatch(clearStatus())
-        }
-    }, [token])
-
-    useEffect(() => {
-        if (error) {
-            const title = handleErrorTitle(error, t)
-            showError(title)
-            dispatch(clearStatus())
-        }
-    }, [error, status])
 
     return (
         <div className='content-container auth-container'>

@@ -8,6 +8,7 @@ const initialState ={
     token: localStorage.getItem('userToken') ?? null,
     status: loadingStatus.idle,
     error: null,
+    lastAction: null, // login, signup
 }
 
 export const loginUser = createAsyncThunk(
@@ -62,6 +63,7 @@ const authSlice = createSlice({
                 state.status = loadingStatus.succeeded
                 state.user = action.payload.username
                 state.token = action.payload.token
+                state.lastAction = 'login'
             })
             .addCase(loginUser.rejected, commonRejected)
         // signupUser handler
@@ -70,6 +72,7 @@ const authSlice = createSlice({
                 state.status = loadingStatus.succeeded
                 state.user = action.payload.username
                 state.token = action.payload.token
+                state.lastAction = 'signup'
             })
             .addCase(registerUser.rejected, commonRejected)
     }
