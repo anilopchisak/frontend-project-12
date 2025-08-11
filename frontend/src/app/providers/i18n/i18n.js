@@ -5,11 +5,12 @@ import resources from '../../../shared/i18n/locales/index.js'
 i18n
   .use(initReactI18next)
   .init({
-    resources,
-    fallbackLng: 'ru',
-    interpolation: {
-      escapeValue: false,
-    },
+      lng: 'ru',
+      resources,
+      fallbackLng: 'ru',
+      interpolation: {
+          escapeValue: false,
+      },
   })
 
 export default i18n

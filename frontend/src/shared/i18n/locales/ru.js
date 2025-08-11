@@ -37,6 +37,7 @@ export default {
             },
         },
         chat: {
+            channelManage: 'Управление каналом',
             confirmMessage: 'Уверены?',
             titles: {
                 channels: 'Каналы',
@@ -73,10 +74,14 @@ export default {
                 conflict: "Пользователь с таким именем уже существует",
                 unauthorized: "Неверные имя пользователя или пароль",
             },
-            serverError: 'Сервер недоступен. Проверьте интернет-соединение.',
+            serverError: 'Ошибка соединения',
             unknown: 'Неизвестная ошибка: не удалось загрузить данные.',
         },
         messages: {
+            messages_one: "{{count}} сообщение",
+            messages_few: "{{count}} сообщения",
+            messages_many: "{{count}} сообщений",
+            messages_other: "{{count}} сообщений",
             auth: {
                 loginSuccess: "Успешный вход!",
                 registerSuccess: "Регистрация прошла успешно!",
