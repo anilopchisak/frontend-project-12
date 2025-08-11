@@ -18,9 +18,10 @@ const AddModal = ({ onCancel }) => {
     const label = t('chat.labels.channelName')
     const submitText = t('chat.buttons.send')
 
-    const handleSubmit = (values) => {
+    const handleSubmit = (values, {resetForm}) => {
         dispatch(addChannel({channelData: values, token}))
         onCancel()
+        resetForm()
     }
 
     return (

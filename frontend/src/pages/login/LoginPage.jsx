@@ -4,9 +4,9 @@ import { loginValidationSchema } from "../../shared/yup/schemes"
 import { loginUser } from "../../features/auth/model/authSlice"
 import FormLayout from "../../shared/ui/form/layout/FormLayout"
 import AuthFields from "../../features/auth/ui/AuthFields"
-import Link from '../../shared/ui/link/Link'
 import { loadingStatus } from "../../shared/config/statusConsts"
 import useAuthToast from "../../widgets/toasts/hooks/useAuthToast.js";
+import {NavLink} from "react-router";
 
 const LoginPage = () => {
     const { status } = useSelector((state) => state.auth)
@@ -30,11 +30,9 @@ const LoginPage = () => {
             >
                 <AuthFields />
             </FormLayout>
-            <p>{t('auth.links.signupPrompt')} <Link url='/signup'>{t('auth.titles.signup')}</Link>
+            <p>
+                {t('auth.links.signupPrompt')} <NavLink to='/signup'>{t('auth.titles.signup')}</NavLink>
             </p>
-            <Link url='/signup'>
-
-            </Link>
         </div>
     )
 }

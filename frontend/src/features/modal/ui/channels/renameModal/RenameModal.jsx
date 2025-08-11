@@ -18,13 +18,14 @@ const RenameModal = ({id, name, onCancel}) => {
     const label = null
     const submitText = t('chat.buttons.send')
 
-    const handleSubmit = (values) => {
+    const handleSubmit = (values, {resetForm}) => {
         dispatch(editChannel({
             id: id,
             channelData: values,
             token,
         }))
         onCancel()
+        resetForm()
     }
 
     return (

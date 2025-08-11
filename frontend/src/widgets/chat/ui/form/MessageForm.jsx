@@ -36,13 +36,6 @@ const MessageForm = () => {
         resetForm()
     }
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault()
-            e.target.form
-        }
-    }
-
     useEffect(() => {
         handleResetInputField()
     }, [channelId])
@@ -58,9 +51,7 @@ const MessageForm = () => {
                 isDisabledBtn={status === loadingStatus.loading}
             >
                 <Field
-                    as='textarea'
                     name='messageField'
-                    onKeyDown={(e) => handleKeyDown(e)}
                     className={styles.fieldClass}
                     placeholder={t('chat.placeholders.newMessage')}
                     ref={inputRef}

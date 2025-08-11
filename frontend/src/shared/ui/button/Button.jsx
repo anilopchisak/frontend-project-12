@@ -7,7 +7,6 @@ const variantClasses = {
     [buttonVariant.primaryWide]: cn(styles.primary, styles.w100),
     [buttonVariant.secondary]: styles.secondary,
     [buttonVariant.icon]: cn(styles.secondary, styles.icon),
-    [buttonVariant.dropdown]: styles.dropdown,
 }
 
 const Button = ({
