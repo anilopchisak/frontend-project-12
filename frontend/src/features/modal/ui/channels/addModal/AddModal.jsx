@@ -15,8 +15,8 @@ const AddModal = ({ onCancel }) => {
     const initialValues = { [fieldName]: '' }
     const validationSchema = () => newChannelNameValidationSchema(t)
     const statusLoading = status === loadingStatus.loading
-    const label = t('chat.titles.addChannel')
-    const submitText = t('chat.buttons.addChannel')
+    const label = t('chat.labels.channelName')
+    const submitText = t('chat.buttons.send')
 
     const handleSubmit = (values) => {
         dispatch(addChannel({channelData: values, token}))

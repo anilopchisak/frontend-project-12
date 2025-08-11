@@ -8,8 +8,13 @@ const AuthFields = ({ withConfirmPassword = false }) => {
     return (
         <div className={styles.form}>
             <FormField 
-                label={t('auth.form.username')}
+                label={
+                    withConfirmPassword
+                        ? t('auth.form.username')
+                        : t('auth.form.userNick')
+                }
                 name='username'
+                autoFocus={true}
             />
             <FormField
                 label={t('auth.form.password')}

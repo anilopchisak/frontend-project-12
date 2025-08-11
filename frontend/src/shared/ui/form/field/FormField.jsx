@@ -6,10 +6,17 @@ const FormField = ({
     name,
     type = 'text',
     autoComplete = 'on',
-    autoFocus = false
+    autoFocus = false,
 }) => {
+    const handleFocus = (e) => {
+        e.target.select()
+    }
+
     return (
         <div className={styles.formGroup}>
+            <label htmlFor={name} hidden>
+                {label}
+            </label>
             <Field
                 type={type}
                 name={name}
@@ -18,6 +25,7 @@ const FormField = ({
                 className={styles.fieldClass}
                 autoComplete={autoComplete}
                 autoFocus={autoFocus}
+                onFocus={handleFocus}
             />
             <div className={styles.errorContainer}>
                 <ErrorMessage

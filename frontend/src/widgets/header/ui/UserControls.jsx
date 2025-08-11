@@ -16,7 +16,7 @@ const UserControls = () => {
         <div className={styles.authControls}>
             <p className={styles.username}>{user}</p>
             <Button onClick={handleLogout}>
-                {t('auth.titles.logout')}
+                {t('auth.buttons.logout')}
             </Button>
         </div>
     )

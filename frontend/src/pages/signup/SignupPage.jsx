@@ -28,7 +28,7 @@ const SignupPage = () => {
                 }}
                 onSubmit={handleSubmit}
                 validationSchema={() => signupValidationSchema(t)}
-                submitText={t('auth.titles.signup')}
+                submitText={t('auth.buttons.signup')}
                 isDisabledBtn={status === loadingStatus.loading}
             >
                 <AuthFields withConfirmPassword='true' />

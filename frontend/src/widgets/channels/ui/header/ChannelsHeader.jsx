@@ -1,7 +1,6 @@
 import Button from "../../../../shared/ui/button/Button"
 import styles from './ChannelsHeader.module.css'
 import { buttonVariant } from "../../../../shared/config/buttonConsts"
-import { MdOutlinePlaylistAdd } from "react-icons/md"
 import { useTranslation } from "react-i18next"
 import { useDispatch } from "react-redux"
 import {lastActionChannels} from "../../../../shared/config/lastActionConsts.js";
@@ -28,7 +27,7 @@ const ChannelsHeader = () => {
                     variant={buttonVariant.icon}
                     onClick={handleOpenAddModal}
                 >
-                    <MdOutlinePlaylistAdd />
+                    +
                 </Button>
             </div>
         </>

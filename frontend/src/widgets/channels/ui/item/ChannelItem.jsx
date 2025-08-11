@@ -32,7 +32,8 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
             type: lastActionChannels.rename,
             props: {
                 title: t('chat.titles.renameChannel'),
-                id: channel.id
+                id: channel.id,
+                name: channel.name,
             }
         }))
     }

@@ -20,18 +20,20 @@ const LoginPage = () => {
 
     return (
         <div className='content-container auth-container'>
-            <h1>{t('auth.titles.login')}</h1>
+            <h1>{t('auth.buttons.login')}</h1>
             <FormLayout
                 initialValues={{ username: '', password: '' }}
                 validationSchema={() => loginValidationSchema(t)}
                 onSubmit={handleSubmit} 
-                submitText={t('auth.titles.login')}
+                submitText={t('auth.buttons.login')}
                 isDisabledBtn={status === loadingStatus.loading}
             >
                 <AuthFields />
             </FormLayout>
+            <p>{t('auth.links.signupPrompt')} <Link url='/signup'>{t('auth.titles.signup')}</Link>
+            </p>
             <Link url='/signup'>
-                {t('auth.links.signupPrompt')}
+
             </Link>
         </div>
     )

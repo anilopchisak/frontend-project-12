@@ -5,18 +5,18 @@ import {loadingStatus} from "../../../../../shared/config/statusConsts.js";
 import {editChannel} from "../../../../channels/model/channelsSlice.js";
 import ModalFormLayout from "../../../../../shared/ui/form/modal/ModalFormLayout.jsx";
 
-const RenameModal = ({id, onCancel}) => {
+const RenameModal = ({id, name, onCancel}) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
     const {status} = useSelector(state => state.channels)
     const {token} = useSelector(state => state.auth)
 
     const fieldName = 'name'
-    const initialValues = { [fieldName]: '' }
+    const initialValues = { [fieldName]: name }
     const validationSchema = () => newChannelNameValidationSchema(t)
     const statusLoading = status === loadingStatus.loading
-    const label = t('chat.titles.renameChannel')
-    const submitText = t('chat.buttons.renameChannel')
+    const label = null
+    const submitText = t('chat.buttons.send')
 
     const handleSubmit = (values) => {
         dispatch(editChannel({

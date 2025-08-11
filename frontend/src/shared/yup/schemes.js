@@ -12,13 +12,11 @@ export const signupValidationSchema = (t) => {
   return Yup.object({
     username: Yup.string()
       .required(t('auth.yup.required'))
-      .min(3, t('auth.yup.username.min'))
-      .max(20, t('auth.yup.username.max')),
+      .min(3, t('auth.yup.username.minMax'))
+      .max(20, t('auth.yup.username.minMax')),
     password: Yup.string()
       .required(t('auth.yup.required'))
-      .min(6, t('auth.yup.password.min'))
-      .matches(/[a-zA-Z]/, t('auth.yup.password.containLetter'))
-      .matches(/\d/, t('auth.yup.password.containNumber')),
+      .min(6, t('auth.yup.password.min')),
     confirmPassword: Yup.string()
       .required(t('auth.yup.required'))
       .oneOf([Yup.ref('password'), null], t('auth.yup.confirmPassword.mustMatch')),
