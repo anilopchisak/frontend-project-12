@@ -64,7 +64,14 @@ export default {
             },
             yup: {
                 channelExists: 'Должно быть уникальным'
-            }
+            },
+            messagesCount: {
+                messages_one: "{{count}} сообщение",
+                messages_few: "{{count}} сообщения",
+                messages_many: "{{count}} сообщений",
+                messages_other: "{{count}} сообщений",
+            },
+            newMessage: 'Новое сообщение',
         },
         notFound: {
             title: 'Страница не найдена',
@@ -78,10 +85,6 @@ export default {
             unknown: 'Неизвестная ошибка: не удалось загрузить данные.',
         },
         messages: {
-            messages_one: "{{count}} сообщение",
-            messages_few: "{{count}} сообщения",
-            messages_many: "{{count}} сообщений",
-            messages_other: "{{count}} сообщений",
             auth: {
                 loginSuccess: "Успешный вход!",
                 registerSuccess: "Регистрация прошла успешно!",

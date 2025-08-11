@@ -54,8 +54,9 @@ const MessageForm = () => {
                     name='messageField'
                     className={styles.fieldClass}
                     placeholder={t('chat.placeholders.newMessage')}
-                    ref={inputRef}
+                    innerRef={inputRef}
                     autoFocus
+                    aria-label={t('chat.newMessage')}
                 />
             </FormLayout>
         </div>

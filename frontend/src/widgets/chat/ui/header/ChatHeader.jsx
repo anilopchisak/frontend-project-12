@@ -7,7 +7,7 @@ const ChatHeader = ({channel, messagesCount = 0}) => {
     return (
         <div className={styles.header}>
             <h3># {cleanText(channel.name)}</h3>
-            <p>{t('messages.messages', { count: messagesCount })}</p>
+            <p>{t('chat.messagesCount.messages', { count: messagesCount })}</p>
         </div>
     )
 }
