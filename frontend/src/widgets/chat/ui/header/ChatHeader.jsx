@@ -5,7 +5,10 @@ const ChatHeader = ({ channel, messagesCount = 0 }) => {
   const { t } = useTranslation()
   return (
     <div className={styles.header}>
-      <h3># {channel.name}</h3>
+      <h3>
+        #
+        {channel.name}
+      </h3>
       <p>{t('chat.messagesCount.messages', { count: messagesCount })}</p>
     </div>
   )

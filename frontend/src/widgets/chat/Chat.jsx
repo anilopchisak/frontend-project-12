@@ -11,14 +11,14 @@ import { showError } from '../../shared/toastify/toast.js'
 
 const Chat = () => {
   const { t } = useTranslation()
-  const username = useSelector((state) => state.auth.user)
+  const username = useSelector(state => state.auth.user)
   const messages = useSelector(selectAllMessages)
-  const { errorChannels } = useSelector((state) => state.channels)
-  const { errorMessages } = useSelector((state) => state.messages)
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId)
-  const currentChannel = useSelector((state) => selectChannelById(state, currentChannelId))
+  const { errorChannels } = useSelector(state => state.channels)
+  const { errorMessages } = useSelector(state => state.messages)
+  const currentChannelId = useSelector(state => state.channels.currentChannelId)
+  const currentChannel = useSelector(state => selectChannelById(state, currentChannelId))
 
-  const currentMessages = messages.filter((message) => message.channelId === currentChannelId)
+  const currentMessages = messages.filter(message => message.channelId === currentChannelId)
   const messagesCount = currentMessages.length
 
   useEffect(() => {
@@ -36,13 +36,13 @@ const Chat = () => {
 
   return (
     <div className={styles.container}>
-      <ChatHeader 
-        channel={currentChannel} 
+      <ChatHeader
+        channel={currentChannel}
         messagesCount={messagesCount}
       />
-      <MessageList 
-        currentMessages={currentMessages} 
-        currentChannelId={currentChannelId} 
+      <MessageList
+        currentMessages={currentMessages}
+        currentChannelId={currentChannelId}
         username={username}
       />
       <MessageForm />

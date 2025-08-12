@@ -12,6 +12,6 @@ export default configureStore({
     messages: messagesReducer,
     modal: modalReducer,
   },
-  middleware: (getDefaultMiddleware) => 
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 })

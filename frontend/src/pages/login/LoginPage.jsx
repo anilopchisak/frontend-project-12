@@ -9,7 +9,7 @@ import useAuthToast from '../../widgets/toasts/hooks/useAuthToast.js'
 import { NavLink } from 'react-router'
 
 const LoginPage = () => {
-  const { status } = useSelector((state) => state.auth)
+  const { status } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   useAuthToast()
@@ -24,14 +24,16 @@ const LoginPage = () => {
       <FormLayout
         initialValues={{ username: '', password: '' }}
         validationSchema={() => loginValidationSchema(t)}
-        onSubmit={handleSubmit} 
+        onSubmit={handleSubmit}
         submitText={t('auth.buttons.login')}
         isDisabledBtn={status === loadingStatus.loading}
       >
         <AuthFields />
       </FormLayout>
       <p>
-        {t('auth.links.signupPrompt')} <NavLink to="/signup">{t('auth.titles.signup')}</NavLink>
+        {t('auth.links.signupPrompt')}
+        {' '}
+        <NavLink to="/signup">{t('auth.titles.signup')}</NavLink>
       </p>
     </div>
   )

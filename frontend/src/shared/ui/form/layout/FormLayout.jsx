@@ -4,10 +4,10 @@ import { buttonVariant } from '../../../config/buttonConsts'
 import { formTypes } from '../../../config/formTypeConsts'
 import ButtonGroup from '../../buttonGroup/ButtonGroup.jsx'
 
-const FormLayout = ({ 
-  children, 
-  initialValues, 
-  validationSchema, 
+const FormLayout = ({
+  children,
+  initialValues,
+  validationSchema,
   onSubmit,
   onCancel = null,
   submitText,
@@ -37,7 +37,7 @@ const FormLayout = ({
   }[formType] ?? 1
 
   return (
-    <Formik 
+    <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, formikHelpers) => onSubmit(values, formikHelpers)}

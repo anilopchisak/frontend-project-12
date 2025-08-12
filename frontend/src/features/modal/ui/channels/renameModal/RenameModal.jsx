@@ -9,8 +9,8 @@ import { cleanText } from '../../../../../shared/lib/profanityFilter.js'
 const RenameModal = ({ id, name, onCancel }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { status } = useSelector((state) => state.channels)
-  const { token } = useSelector((state) => state.auth)
+  const { status } = useSelector(state => state.channels)
+  const { token } = useSelector(state => state.auth)
 
   const fieldName = 'name'
   const initialValues = { [fieldName]: name }

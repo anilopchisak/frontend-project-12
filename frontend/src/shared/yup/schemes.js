@@ -31,7 +31,7 @@ export const newChannelNameValidationSchema = (t) => {
       .max(20, t('auth.yup.username.minMax'))
       .test('unique', t('chat.yup.channelExists'), function (value) {
         const channels = store.getState().channels.entities
-        const channelNames = Object.values(channels).map((c) => c.name.toLowerCase())
+        const channelNames = Object.values(channels).map(c => c.name.toLowerCase())
         return !channelNames.includes(value.trim().toLowerCase())
       }),
   })

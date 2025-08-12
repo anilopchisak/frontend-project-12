@@ -32,7 +32,7 @@ const ModalWindow = () => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Component {...props} onCancel={handleClose}/>
+        <Component {...props} onCancel={handleClose} />
       </Modal.Body>
     </Modal>
   )

@@ -55,32 +55,34 @@ const ChannelItem = ({ channel, isCurrent, onSelect }) => {
     <>
       <Dropdown as={ButtonGroup}>
         <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
-          <span aria-hidden="true">#</span>{channel.name}
+          <span aria-hidden="true">#</span>
+          {channel.name}
         </Button>
-        {isRemovable &&
-        <>
-          <Dropdown.Toggle
-            split
-            variant="primary"
-            id="dropdown-split-primary"
-            className={classesToggle}
-          >
-            <span className="visually-hidden">{t('chat.channelManage')}</span>
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item
-              onClick={openRenameModal}
-            >
-              {t('chat.buttons.renameChannel')}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={openDeleteModal}
-            >
-              {t('chat.buttons.deleteChannel')}
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </>
-        }
+        {isRemovable
+          && (
+            <>
+              <Dropdown.Toggle
+                split
+                variant="primary"
+                id="dropdown-split-primary"
+                className={classesToggle}
+              >
+                <span className="visually-hidden">{t('chat.channelManage')}</span>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  onClick={openRenameModal}
+                >
+                  {t('chat.buttons.renameChannel')}
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={openDeleteModal}
+                >
+                  {t('chat.buttons.deleteChannel')}
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </>
+          )}
       </Dropdown>
     </>
   )

@@ -4,7 +4,7 @@ import UserControls from './ui/UserControls'
 import { NavLink } from 'react-router'
 
 const Header = () => {
-  const { token } = useSelector((state) => state.auth)
+  const { token } = useSelector(state => state.auth)
 
   return (
     <header className={styles.container}>
@@ -17,11 +17,9 @@ const Header = () => {
             Hexlet Chat
           </NavLink>
         </h2>
-        {token ?
-          <UserControls/>
-          :
-          null
-        }
+        {token
+          ? <UserControls />
+          : null}
       </div>
     </header>
   )

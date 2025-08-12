@@ -44,7 +44,7 @@ export default {
         deleteChannel: 'Удалить канал',
         renameChannel: 'Переименовать канал',
         addChannel: 'Создать новый канал',
-      }, 
+      },
       placeholders: {
         newMessage: 'Введите сообщение...',
         newChannel: 'Введите название канала...',

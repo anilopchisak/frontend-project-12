@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router'
 
 const useAuthToast = () => {
   const { t } = useTranslation()
-  const { token, error, lastAction } = useSelector((state) => state.auth)
+  const { token, error, lastAction } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

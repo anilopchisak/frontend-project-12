@@ -3,14 +3,14 @@ import SocketProvider from '../../app/providers/socket/SocketProvider.jsx'
 import { Navigate } from 'react-router'
 
 const PrivateRoute = ({ children }) => {
-  const { token } = useSelector((state) => state.auth)
+  const { token } = useSelector(state => state.auth)
   return token
     ? (
-      <>
-        <SocketProvider />
-        {children}
-      </>
-    )
+        <>
+          <SocketProvider />
+          {children}
+        </>
+      )
     : <Navigate to="/login" />
 }
 

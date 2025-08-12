@@ -6,7 +6,7 @@ import styles from './ChannelList.module.css'
 const ChannelList = () => {
   const dispatch = useDispatch()
   const channels = useSelector(selectAllChannels)
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId)
+  const currentChannelId = useSelector(state => state.channels.currentChannelId)
 
   const handleSelect = (id) => {
     dispatch(setCurrentChannel(id))
@@ -14,13 +14,14 @@ const ChannelList = () => {
 
   return (
     <div className={styles.container}>
-      {channels && channels.map((channel) => 
-        <ChannelItem 
+      {channels && channels.map(channel => (
+        <ChannelItem
           key={channel.id}
           channel={channel}
           isCurrent={channel.id === currentChannelId}
           onSelect={handleSelect}
-        />,
+        />
+      ),
       )}
     </div>
   )

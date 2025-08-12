@@ -18,13 +18,13 @@ export const getChannels = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       return await channelsApi.fetchAll(token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -35,13 +35,13 @@ export const addChannel = createAsyncThunk(
   async ({ channelData, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.create(channelData, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -52,13 +52,13 @@ export const editChannel = createAsyncThunk(
   async ({ id, channelData, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.update(id, channelData, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -69,13 +69,13 @@ export const deleteChannel = createAsyncThunk(
   async ({ id, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.remove(id, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -147,9 +147,9 @@ const channelsSlice = createSlice({
       .addCase(deleteChannel.fulfilled, (state, action) => {
         channelsAdapter.removeOne(state, action.payload.id)
         const remainingChannels = Object.values(state.entities)
-        state.currentChannelId = state.currentChannelId === action.payload.id 
+        state.currentChannelId = state.currentChannelId === action.payload.id
           ? remainingChannels[0].id
-          : state.currentChannelId 
+          : state.currentChannelId
         state.status = loadingStatus.succeeded
         state.lastAction = lastActionChannels.delete
       })
@@ -157,7 +157,7 @@ const channelsSlice = createSlice({
   },
 })
 
-export const { 
+export const {
   setCurrentChannel,
   channelDeleted,
   channelReceived,
@@ -169,6 +169,6 @@ export const {
   selectAll: selectAllChannels,
   selectById: selectChannelById,
   selectIds: selectChannelIds,
-} = channelsAdapter.getSelectors((state) => state.channels)
+} = channelsAdapter.getSelectors(state => state.channels)
 
 export default channelsSlice.reducer

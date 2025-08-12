@@ -31,23 +31,25 @@ const ButtonGroup = ({
         >
           {t('chat.buttons.cancel')}
         </ButtonCustom>
-        {dangerButton ?
-          <ButtonCustom
-            variant={buttonVariant.danger}
-            type="submit"
-            disabled={isDisabledBtn}
-          >
-            {submitText}
-          </ButtonCustom>
-          :
-          <ButtonCustom
-            variant={buttonVariant.primary}
-            type="submit"
-            disabled={isDisabledBtn}
-          >
-            {submitText}
-          </ButtonCustom>
-        }
+        {dangerButton
+          ? (
+              <ButtonCustom
+                variant={buttonVariant.danger}
+                type="submit"
+                disabled={isDisabledBtn}
+              >
+                {submitText}
+              </ButtonCustom>
+            )
+          : (
+              <ButtonCustom
+                variant={buttonVariant.primary}
+                type="submit"
+                disabled={isDisabledBtn}
+              >
+                {submitText}
+              </ButtonCustom>
+            )}
 
       </div>
     )

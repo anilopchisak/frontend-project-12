@@ -11,7 +11,7 @@ const SignupPage = () => {
   useAuthToast()
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const { status } = useSelector((state) => state.auth)
+  const { status } = useSelector(state => state.auth)
 
   const handleSubmit = ({ username, password }) => {
     dispatch(registerUser({ username, password }))
@@ -21,8 +21,8 @@ const SignupPage = () => {
     <div className="content-container auth-container">
       <h1>{t('auth.titles.signup')}</h1>
       <FormLayout
-        initialValues={{ 
-          username: '', 
+        initialValues={{
+          username: '',
           password: '',
           confirmPassword: '',
         }}
@@ -32,7 +32,7 @@ const SignupPage = () => {
         isDisabledBtn={status === loadingStatus.loading}
       >
         <AuthFields withConfirmPassword="true" />
-      </FormLayout>                
+      </FormLayout>
     </div>
   )
 }

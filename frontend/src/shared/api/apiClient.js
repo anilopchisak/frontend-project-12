@@ -5,26 +5,26 @@ const axiosInstance = axios.create({
   timeout: 5000,
 })
 
-const getAuthorizationHeader = (token) =>
+const getAuthorizationHeader = token =>
   token ? { Authorization: `Bearer ${token}` } : {}
 
 export default {
   get: (url, token) => axiosInstance.get(
-    url, 
+    url,
     { headers: getAuthorizationHeader(token) },
-  ).then((res) => res.data),
+  ).then(res => res.data),
   post: (url, data, token) => axiosInstance.post(
-    url, 
-    data, 
+    url,
+    data,
     { headers: getAuthorizationHeader(token) },
-  ).then((res) => res.data),
+  ).then(res => res.data),
   patch: (url, data, token) => axiosInstance.patch(
-    url, 
-    data, 
+    url,
+    data,
     { headers: getAuthorizationHeader(token) },
-  ).then((res) => res.data),
+  ).then(res => res.data),
   delete: (url, token) => axiosInstance.delete(
-    url, 
+    url,
     { headers: getAuthorizationHeader(token) },
-  ).then((res) => res.data),
+  ).then(res => res.data),
 }

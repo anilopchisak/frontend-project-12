@@ -7,8 +7,8 @@ import ModalFormLayout from '../../../../../shared/ui/form/modal/ModalFormLayout
 const DeleteModal = ({ id, onCancel }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { status } = useSelector((state) => state.channels)
-  const { token } = useSelector((state) => state.auth)
+  const { status } = useSelector(state => state.channels)
+  const { token } = useSelector(state => state.auth)
 
   const fieldName = ''
   const initialValues = { }

@@ -7,7 +7,7 @@ const AuthFields = ({ withConfirmPassword = false }) => {
 
   return (
     <div className={styles.form}>
-      <FormField 
+      <FormField
         label={
           withConfirmPassword
             ? t('auth.form.username')

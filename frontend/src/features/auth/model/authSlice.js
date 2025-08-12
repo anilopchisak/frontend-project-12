@@ -3,7 +3,7 @@ import { loadingStatus } from '../../../shared/config/statusConsts.js'
 import authApi from '../api/authApi.js'
 import { commonPending, commonRejected } from '../../../shared/lib/commonStatusHandlers.js'
 
-const initialState ={
+const initialState = {
   user: localStorage.getItem('username') ?? null,
   token: localStorage.getItem('userToken') ?? null,
   status: loadingStatus.idle,
@@ -19,13 +19,13 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem('userToken', data.token)
       localStorage.setItem('username', data.username)
       return data
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -39,13 +39,13 @@ export const registerUser = createAsyncThunk(
       localStorage.setItem('userToken', data.token)
       localStorage.setItem('username', data.username)
       return data
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -68,7 +68,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder 
+    builder
     // loginUser handler
       .addCase(loginUser.pending, commonPending)
       .addCase(loginUser.fulfilled, (state, action) => {

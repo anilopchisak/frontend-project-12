@@ -24,19 +24,19 @@ const MessageList = ({ currentMessages, username }) => {
     previousMessagesLengthRef.current = currentMessages.length
   }, [currentMessages, username])
 
-    
   if (!currentMessages) {
     return <div className={styles.placeholder}>{t('chat.placeholders.startChat')}</div>
   }
 
   return (
     <div className={styles.container} ref={containerRef}>
-      {currentMessages.map((message) => 
-        <MessageItem 
+      {currentMessages.map(message => (
+        <MessageItem
           key={message.id}
           isUser={message.username === username}
           message={message}
-        />,
+        />
+      ),
       )}
     </div>
   )

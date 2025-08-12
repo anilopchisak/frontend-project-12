@@ -7,7 +7,7 @@ import { showError, showSuccess } from '../../../shared/toastify/toast.js'
 import { handleErrorTitle } from '../../../shared/lib/handleNotifyTitle.js'
 
 const useChannelToast = () => {
-  const { lastAction, error, status } = useSelector((state) => state.channels)
+  const { lastAction, error, status } = useSelector(state => state.channels)
   const { t } = useTranslation()
 
   useEffect(() => {

@@ -15,13 +15,13 @@ export const getMessages = createAsyncThunk(
   async (token, { rejectWithValue }) => {
     try {
       return await messagesApi.fetchAll(token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -32,13 +32,13 @@ export const addMessage = createAsyncThunk(
   async ({ message, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.create(message, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -49,13 +49,13 @@ export const editMessage = createAsyncThunk(
   async ({ id, message, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.update(id, message, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -66,13 +66,13 @@ export const deleteMessage = createAsyncThunk(
   async ({ id, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.remove(id, token)
-    } catch (error) {
+    }
+    catch (error) {
       const errorData = error.response.data
-                ||
-                {
-                  statusCode: error.status,
-                  statusText: error.response.statusText,
-                }
+        || {
+          statusCode: error.status,
+          statusText: error.response.statusText,
+        }
       return rejectWithValue(errorData)
     }
   },
@@ -88,8 +88,8 @@ const messagesSlice = createSlice({
     messagesDeletedByChannel: (state, action) => {
       const channelId = action.payload
       const idsToRemove = Object.values(state.entities)
-        .filter((msg) => msg.channelId === channelId)
-        .map((msg) => msg.id)
+        .filter(msg => msg.channelId === channelId)
+        .map(msg => msg.id)
       messagesAdapter.removeMany(state, idsToRemove)
     },
     messagesRemoveAll: (state) => {
@@ -144,6 +144,6 @@ export const {
   selectAll: selectAllMessages,
   selectById: selectMessageById,
   selectIds: selectMessageIds,
-} = messagesAdapter.getSelectors((state) => state.messages)
+} = messagesAdapter.getSelectors(state => state.messages)
 
 export default messagesSlice.reducer

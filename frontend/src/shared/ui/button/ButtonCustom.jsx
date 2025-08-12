@@ -12,15 +12,15 @@ const variantClasses = {
 }
 
 const ButtonCustom = ({
-  children, 
+  children,
   variant = buttonVariant.primary,
-  onClick, 
+  onClick,
   type = 'submit',
   disabled = false,
 }) => {
   return (
     <Button
-      className={variantClasses[variant]} 
+      className={variantClasses[variant]}
       onClick={onClick}
       type={type}
       disabled={disabled}

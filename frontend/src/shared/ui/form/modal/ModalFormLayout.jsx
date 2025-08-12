@@ -25,15 +25,15 @@ const ModalFormLayout = ({
       submitText={submitText}
       dangerButton={dangerButton}
     >
-      {fieldName ?
-        <FormField
-          label={label}
-          name={fieldName}
-          autoFocus={true}
-        />
-        :
-        <p>{label}</p>
-      }
+      {fieldName
+        ? (
+            <FormField
+              label={label}
+              name={fieldName}
+              autoFocus={true}
+            />
+          )
+        : <p>{label}</p>}
     </FormLayout>
   )
 }

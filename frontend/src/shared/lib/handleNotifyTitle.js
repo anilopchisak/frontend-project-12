@@ -1,5 +1,5 @@
 export const handleErrorTitle = (error, t) => {
-  switch(error.statusCode) {
+  switch (error.statusCode) {
     case (401):
       return t('errors.auth.unauthorized')
     case (409):

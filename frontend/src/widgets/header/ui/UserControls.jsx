@@ -7,7 +7,7 @@ import ButtonCustom from '../../../shared/ui/button/ButtonCustom.jsx'
 const UserControls = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.auth)
+  const { user } = useSelector(state => state.auth)
 
   const handleLogout = () => {
     dispatch(logout())

@@ -14,9 +14,9 @@ const MessageForm = () => {
   const { t } = useTranslation()
   const inputRef = useRef()
 
-  const { token } = useSelector((state) => state.auth)
-  const { status, user } = useSelector((state) => state.auth)
-  const channelId = useSelector((state) => state.channels.currentChannelId)
+  const { token } = useSelector(state => state.auth)
+  const { status, user } = useSelector(state => state.auth)
+  const channelId = useSelector(state => state.channels.currentChannelId)
 
   const handleResetInputField = () => {
     inputRef.current.focus()

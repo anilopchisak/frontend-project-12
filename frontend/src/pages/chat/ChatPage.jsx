@@ -7,17 +7,17 @@ import styles from './ChatPage.module.css'
 import Channels from '../../widgets/channels/Channels'
 import Chat from '../../widgets/chat/Chat'
 
-const ChatPage= () => {
+const ChatPage = () => {
   const dispatch = useDispatch()
-  const { token } = useSelector((state) => state.auth)
+  const { token } = useSelector(state => state.auth)
 
-  const { 
+  const {
     status: channelsStatus,
-  } = useSelector((state) => state.channels)
-  const { 
+  } = useSelector(state => state.channels)
+  const {
     status: messagesStatus,
-  } = useSelector((state) => state.messages)
-    
+  } = useSelector(state => state.messages)
+
   useEffect(() => {
     if (channelsStatus === loadingStatus.idle && messagesStatus === loadingStatus.idle) {
       dispatch(getChannels(token))

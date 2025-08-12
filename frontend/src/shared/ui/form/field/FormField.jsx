@@ -3,7 +3,7 @@ import styles from './FormField.module.css'
 import { useEffect, useRef } from 'react'
 
 const FormField = ({
-  label, 
+  label,
   name,
   type = 'text',
   autoComplete = 'on',
