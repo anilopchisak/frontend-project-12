@@ -13,5 +13,5 @@ export default configureStore({
     modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware().prepend(listenerMiddleware.middleware)
+    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 })

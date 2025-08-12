@@ -1,13 +1,13 @@
-import {useSelector} from 'react-redux'
-import {useTranslation} from 'react-i18next'
-import {useEffect} from 'react'
-import {lastActionChannels} from '../../../shared/config/lastActionConsts.js'
-import {loadingStatus} from '../../../shared/config/statusConsts.js'
-import {showError, showSuccess} from '../../../shared/toastify/toast.js'
-import {handleErrorTitle} from '../../../shared/lib/handleNotifyTitle.js'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { lastActionChannels } from '../../../shared/config/lastActionConsts.js'
+import { loadingStatus } from '../../../shared/config/statusConsts.js'
+import { showError, showSuccess } from '../../../shared/toastify/toast.js'
+import { handleErrorTitle } from '../../../shared/lib/handleNotifyTitle.js'
 
 const useChannelToast = () => {
-  const { lastAction, error, status } = useSelector(state => state.channels)
+  const { lastAction, error, status } = useSelector((state) => state.channels)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -34,7 +34,6 @@ const useChannelToast = () => {
       showError(title)
     }
   }, [error, t])
-
 }
 
 export default useChannelToast

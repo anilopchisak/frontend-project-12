@@ -3,7 +3,7 @@ import styles from './MessageList.module.css'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef } from 'react'
 
-const MessageList = ({currentMessages, username}) => {
+const MessageList = ({ currentMessages, username }) => {
   const { t } = useTranslation()
 
   const containerRef = useRef(null)
@@ -31,12 +31,12 @@ const MessageList = ({currentMessages, username}) => {
 
   return (
     <div className={styles.container} ref={containerRef}>
-      {currentMessages.map(message => 
+      {currentMessages.map((message) => 
         <MessageItem 
           key={message.id}
           isUser={message.username === username}
           message={message}
-        />
+        />,
       )}
     </div>
   )

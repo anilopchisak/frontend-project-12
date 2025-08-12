@@ -9,14 +9,14 @@ import Chat from '../../widgets/chat/Chat'
 
 const ChatPage= () => {
   const dispatch = useDispatch()
-  const { token } = useSelector(state => state.auth)
+  const { token } = useSelector((state) => state.auth)
 
   const { 
-    status: channelsStatus
-  } = useSelector(state => state.channels)
+    status: channelsStatus,
+  } = useSelector((state) => state.channels)
   const { 
-    status: messagesStatus
-  } = useSelector(state => state.messages)
+    status: messagesStatus,
+  } = useSelector((state) => state.messages)
     
   useEffect(() => {
     if (channelsStatus === loadingStatus.idle && messagesStatus === loadingStatus.idle) {

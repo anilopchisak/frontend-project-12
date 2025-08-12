@@ -1,7 +1,7 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { loadingStatus } from '../../../shared/config/statusConsts'
 import messagesApi from '../api/messagesApi'
-import {commonPending, commonRejected} from '../../../shared/lib/commonStatusHandlers.js'
+import { commonPending, commonRejected } from '../../../shared/lib/commonStatusHandlers.js'
 
 const messagesAdapter = createEntityAdapter()
 
@@ -12,7 +12,7 @@ const initialState = messagesAdapter.getInitialState({
 
 export const getMessages = createAsyncThunk(
   'messages/getMessages',
-  async (token, {rejectWithValue}) => {
+  async (token, { rejectWithValue }) => {
     try {
       return await messagesApi.fetchAll(token)
     } catch (error) {
@@ -20,16 +20,16 @@ export const getMessages = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const addMessage = createAsyncThunk(
   'messages/addMessage',
-  async ({ message, token }, {rejectWithValue}) => {
+  async ({ message, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.create(message, token)
     } catch (error) {
@@ -37,16 +37,16 @@ export const addMessage = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const editMessage = createAsyncThunk(
   'messages/editMessage',
-  async ({ id, message, token }, {rejectWithValue}) => {
+  async ({ id, message, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.update(id, message, token)
     } catch (error) {
@@ -54,16 +54,16 @@ export const editMessage = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const deleteMessage = createAsyncThunk(
   'messages/deleteMessage',
-  async ({ id, token }, {rejectWithValue}) => {
+  async ({ id, token }, { rejectWithValue }) => {
     try {
       return await messagesApi.remove(id, token)
     } catch (error) {
@@ -71,11 +71,11 @@ export const deleteMessage = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 const messagesSlice = createSlice({
@@ -88,15 +88,15 @@ const messagesSlice = createSlice({
     messagesDeletedByChannel: (state, action) => {
       const channelId = action.payload
       const idsToRemove = Object.values(state.entities)
-        .filter(msg => msg.channelId === channelId)
-        .map(msg => msg.id)
+        .filter((msg) => msg.channelId === channelId)
+        .map((msg) => msg.id)
       messagesAdapter.removeMany(state, idsToRemove)
     },
     messagesRemoveAll: (state) => {
       messagesAdapter.removeAll(state)
       state.status = loadingStatus.idle
       state.error = null
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -120,7 +120,7 @@ const messagesSlice = createSlice({
         state.status = loadingStatus.succeeded
         messagesAdapter.updateOne(state, {
           id: action.payload.id,
-          changes: action.payload
+          changes: action.payload,
         })
       })
       .addCase(editMessage.rejected, commonRejected)
@@ -131,7 +131,7 @@ const messagesSlice = createSlice({
         messagesAdapter.removeOne(state, action.payload.id)
       })
       .addCase(deleteMessage.rejected, commonRejected)
-  }
+  },
 })
 
 export const {
@@ -144,6 +144,6 @@ export const {
   selectAll: selectAllMessages,
   selectById: selectMessageById,
   selectIds: selectMessageIds,
-} = messagesAdapter.getSelectors(state => state.messages)
+} = messagesAdapter.getSelectors((state) => state.messages)
 
 export default messagesSlice.reducer

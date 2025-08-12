@@ -1,4 +1,4 @@
-import {loadingStatus} from '../config/statusConsts.js'
+import { loadingStatus } from '../config/statusConsts.js'
 
 export const commonPending = (state) => {
   state.status = loadingStatus.loading

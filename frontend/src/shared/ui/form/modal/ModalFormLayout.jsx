@@ -12,7 +12,7 @@ const ModalFormLayout = ({
   fieldName,
   submitText,
   dangerButton,
-}
+},
 ) => {
   return (
     <FormLayout

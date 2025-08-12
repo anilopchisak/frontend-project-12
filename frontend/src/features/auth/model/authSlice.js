@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { loadingStatus } from '../../../shared/config/statusConsts.js'
 import authApi from '../api/authApi.js'
-import {commonPending, commonRejected} from '../../../shared/lib/commonStatusHandlers.js'
+import { commonPending, commonRejected } from '../../../shared/lib/commonStatusHandlers.js'
 
 const initialState ={
   user: localStorage.getItem('username') ?? null,
@@ -24,11 +24,11 @@ export const loginUser = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const registerUser = createAsyncThunk(
@@ -44,11 +44,11 @@ export const registerUser = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 const authSlice = createSlice({
@@ -87,7 +87,7 @@ const authSlice = createSlice({
         state.lastAction = 'signup'
       })
       .addCase(registerUser.rejected, commonRejected)
-  }
+  },
 })
 
 export const { logout, clearStatus } = authSlice.actions

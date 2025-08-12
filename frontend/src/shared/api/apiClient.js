@@ -11,20 +11,20 @@ const getAuthorizationHeader = (token) =>
 export default {
   get: (url, token) => axiosInstance.get(
     url, 
-    { headers: getAuthorizationHeader(token) }
-  ).then(res => res.data),
+    { headers: getAuthorizationHeader(token) },
+  ).then((res) => res.data),
   post: (url, data, token) => axiosInstance.post(
     url, 
     data, 
-    { headers: getAuthorizationHeader(token) }
-  ).then(res => res.data),
+    { headers: getAuthorizationHeader(token) },
+  ).then((res) => res.data),
   patch: (url, data, token) => axiosInstance.patch(
     url, 
     data, 
-    { headers: getAuthorizationHeader(token) }
-  ).then(res => res.data),
+    { headers: getAuthorizationHeader(token) },
+  ).then((res) => res.data),
   delete: (url, token) => axiosInstance.delete(
     url, 
-    { headers: getAuthorizationHeader(token) }
-  ).then(res => res.data),
+    { headers: getAuthorizationHeader(token) },
+  ).then((res) => res.data),
 }

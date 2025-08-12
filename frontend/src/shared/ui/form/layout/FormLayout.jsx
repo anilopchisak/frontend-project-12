@@ -1,4 +1,4 @@
-import {Formik, Form} from 'formik'
+import { Formik, Form } from 'formik'
 import styles from './FormLayout.module.css'
 import { buttonVariant } from '../../../config/buttonConsts'
 import { formTypes } from '../../../config/formTypeConsts'

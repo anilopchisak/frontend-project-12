@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 import styles from './Header.module.css'
 import UserControls from './ui/UserControls'
-import {NavLink} from 'react-router'
+import { NavLink } from 'react-router'
 
 const Header = () => {
-  const {token} = useSelector((state) => state.auth)
+  const { token } = useSelector((state) => state.auth)
 
   return (
     <header className={styles.container}>

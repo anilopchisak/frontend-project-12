@@ -33,7 +33,12 @@ export default defineConfig([
       '@stylistic/indent': ['error', 2],
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/jsx-indent-props': ['error', 2],
-      '@stylistic/jsx-indent': ['error', 2],
+      '@stylistic/object-curly-spacing': ['error', 'always'],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/padded-blocks': ['error', 'never'],
+      '@stylistic/eol-last': ['error', 'always'],
+      '@stylistic/comma-spacing': ['error', { before: false, after: true }],
+      '@stylistic/arrow-parens': ['error', 'always'],
     },
   },
 ])

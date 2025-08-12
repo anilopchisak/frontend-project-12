@@ -49,7 +49,7 @@ export default {
         newMessage: 'Введите сообщение...',
         newChannel: 'Введите название канала...',
         selectChannel: 'Выберите канал',
-        startChat: 'Напишите первое сообщение!'
+        startChat: 'Напишите первое сообщение!',
       },
       labels: {
         channelName: 'Имя канала',
@@ -63,7 +63,7 @@ export default {
         send: 'Отправить',
       },
       yup: {
-        channelExists: 'Должно быть уникальным'
+        channelExists: 'Должно быть уникальным',
       },
       messagesCount: {
         messages_one: '{{count}} сообщение',
@@ -94,7 +94,7 @@ export default {
         renamed: 'Канал переименован',
         deleted: 'Канал удалён',
       },
-      loading: 'Ждём ответ от сервера...'
-    }
-  }
+      loading: 'Ждём ответ от сервера...',
+    },
+  },
 }

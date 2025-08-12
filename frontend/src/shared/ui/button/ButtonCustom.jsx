@@ -16,7 +16,7 @@ const ButtonCustom = ({
   variant = buttonVariant.primary,
   onClick, 
   type = 'submit',
-  disabled = false
+  disabled = false,
 }) => {
   return (
     <Button

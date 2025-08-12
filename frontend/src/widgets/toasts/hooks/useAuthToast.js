@@ -1,14 +1,14 @@
-import {useTranslation} from 'react-i18next'
-import {useDispatch, useSelector} from 'react-redux'
-import {useEffect} from 'react'
-import {showError, showSuccess} from '../../../shared/toastify/toast.js'
-import {clearStatus} from '../../../features/auth/model/authSlice.js'
-import {handleErrorTitle} from '../../../shared/lib/handleNotifyTitle.js'
-import {useNavigate} from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { showError, showSuccess } from '../../../shared/toastify/toast.js'
+import { clearStatus } from '../../../features/auth/model/authSlice.js'
+import { handleErrorTitle } from '../../../shared/lib/handleNotifyTitle.js'
+import { useNavigate } from 'react-router'
 
 const useAuthToast = () => {
   const { t } = useTranslation()
-  const { token, error,lastAction } = useSelector((state) => state.auth)
+  const { token, error, lastAction } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

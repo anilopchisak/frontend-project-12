@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal'
-import {useDispatch, useSelector} from 'react-redux'
-import {closeModal, selectModal} from '../../../features/modal/model/modalSlice.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeModal, selectModal } from '../../../features/modal/model/modalSlice.js'
 import AddModal from '../../../features/modal/ui/channels/addModal/AddModal.jsx'
 import RenameModal from '../../../features/modal/ui/channels/renameModal/RenameModal.jsx'
 import DeleteModal from '../../../features/modal/ui/channels/deleteModal/DeleteModal.jsx'

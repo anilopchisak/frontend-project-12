@@ -5,10 +5,10 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import {openModal} from '../../../../features/modal/model/modalSlice.js'
-import {lastActionChannels} from '../../../../shared/config/lastActionConsts.js'
+import { openModal } from '../../../../features/modal/model/modalSlice.js'
+import { lastActionChannels } from '../../../../shared/config/lastActionConsts.js'
 
-const ChannelItem = ({channel, isCurrent, onSelect}) => {
+const ChannelItem = ({ channel, isCurrent, onSelect }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -33,7 +33,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
         title: t('chat.titles.renameChannel'),
         id: channel.id,
         name: channel.name,
-      }
+      },
     }))
   }
 
@@ -42,8 +42,8 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
       type: lastActionChannels.delete,
       props: {
         title: t('chat.titles.deleteChannel'),
-        id: channel.id
-      }
+        id: channel.id,
+      },
     }))
   }
 

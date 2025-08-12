@@ -1,7 +1,7 @@
-import {useTranslation} from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import ButtonCustom from '../button/ButtonCustom.jsx'
 import styles from './ButtonGroup.module.css'
-import {buttonVariant} from '../../config/buttonConsts.js'
+import { buttonVariant } from '../../config/buttonConsts.js'
 
 const ButtonGroup = ({
   btnCount = 1,
@@ -9,7 +9,7 @@ const ButtonGroup = ({
   isDisabledBtn,
   submitText,
   onCancel,
-  dangerButton = false
+  dangerButton = false,
 }) => {
   const { t } = useTranslation()
 

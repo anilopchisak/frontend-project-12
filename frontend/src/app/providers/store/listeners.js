@@ -1,7 +1,7 @@
 import { createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit'
-import {channelsRemoveAll, deleteChannel, getChannels} from '../../../features/channels/model/channelsSlice.js'
-import {messagesDeletedByChannel, messagesRemoveAll} from '../../../features/messages/model/messagesSlice.js'
-import {logout} from '../../../features/auth/model/authSlice.js'
+import { channelsRemoveAll, deleteChannel, getChannels } from '../../../features/channels/model/channelsSlice.js'
+import { messagesDeletedByChannel, messagesRemoveAll } from '../../../features/messages/model/messagesSlice.js'
+import { logout } from '../../../features/auth/model/authSlice.js'
 
 export const listenerMiddleware = createListenerMiddleware()
 
@@ -10,7 +10,7 @@ listenerMiddleware.startListening({
   effect: async (action, listenerApi) => {
     const deletedChannelId = action.payload.id
     listenerApi.dispatch(messagesDeletedByChannel(deletedChannelId))
-  }
+  },
 })
 
 listenerMiddleware.startListening({
@@ -18,7 +18,7 @@ listenerMiddleware.startListening({
   effect: async (_, listenerApi) => {
     listenerApi.dispatch(channelsRemoveAll())
     listenerApi.dispatch(messagesRemoveAll())
-  }
+  },
 })
 
 listenerMiddleware.startListening({
@@ -27,5 +27,5 @@ listenerMiddleware.startListening({
     if (action.payload.statusCode === 401) {
       listenerApi.dispatch(logout())
     }
-  }
+  },
 })

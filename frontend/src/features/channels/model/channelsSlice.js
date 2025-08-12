@@ -1,8 +1,8 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit'
 import { loadingStatus } from '../../../shared/config/statusConsts'
 import channelsApi from '../api/channelsApi'
-import {commonPending, commonRejected} from '../../../shared/lib/commonStatusHandlers.js'
-import {lastActionChannels} from '../../../shared/config/lastActionConsts.js'
+import { commonPending, commonRejected } from '../../../shared/lib/commonStatusHandlers.js'
+import { lastActionChannels } from '../../../shared/config/lastActionConsts.js'
 
 const channelsAdapter = createEntityAdapter()
 
@@ -15,7 +15,7 @@ const initialState = channelsAdapter.getInitialState({
 
 export const getChannels = createAsyncThunk(
   'channels/getChannels',
-  async (token, {rejectWithValue}) => {
+  async (token, { rejectWithValue }) => {
     try {
       return await channelsApi.fetchAll(token)
     } catch (error) {
@@ -23,16 +23,16 @@ export const getChannels = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const addChannel = createAsyncThunk(
   'channels/addChannel',
-  async ({channelData, token}, {rejectWithValue}) => {
+  async ({ channelData, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.create(channelData, token)
     } catch (error) {
@@ -40,16 +40,16 @@ export const addChannel = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const editChannel = createAsyncThunk(
   'channel/editChannel',
-  async ({id, channelData, token}, {rejectWithValue}) => {
+  async ({ id, channelData, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.update(id, channelData, token)
     } catch (error) {
@@ -57,16 +57,16 @@ export const editChannel = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 export const deleteChannel = createAsyncThunk(
   'channel/deleteChannel',
-  async ({id, token}, {rejectWithValue}) => {
+  async ({ id, token }, { rejectWithValue }) => {
     try {
       return await channelsApi.remove(id, token)
     } catch (error) {
@@ -74,11 +74,11 @@ export const deleteChannel = createAsyncThunk(
                 ||
                 {
                   statusCode: error.status,
-                  statusText: error.response.statusText
+                  statusText: error.response.statusText,
                 }
       return rejectWithValue(errorData)
     }
-  }
+  },
 )
 
 const channelsSlice = createSlice({
@@ -101,7 +101,7 @@ const channelsSlice = createSlice({
     channelRenamed: (state, action) => {
       channelsAdapter.updateOne(state, {
         id: action.payload.id,
-        changes: action.payload
+        changes: action.payload,
       })
     },
     channelsRemoveAll: (state) => {
@@ -109,7 +109,6 @@ const channelsSlice = createSlice({
       state.currentChannelId = null
       state.status = loadingStatus.idle
       state.error = null
-
     },
   },
   extraReducers: (builder) => {
@@ -137,7 +136,7 @@ const channelsSlice = createSlice({
       .addCase(editChannel.fulfilled, (state, action) => {
         channelsAdapter.updateOne(state, {
           id: action.payload.id,
-          changes: action.payload
+          changes: action.payload,
         })
         state.status = loadingStatus.succeeded
         state.lastAction = lastActionChannels.rename
@@ -155,7 +154,7 @@ const channelsSlice = createSlice({
         state.lastAction = lastActionChannels.delete
       })
       .addCase(deleteChannel.rejected, commonRejected)
-  }
+  },
 })
 
 export const { 
@@ -170,6 +169,6 @@ export const {
   selectAll: selectAllChannels,
   selectById: selectChannelById,
   selectIds: selectChannelIds,
-} = channelsAdapter.getSelectors(state => state.channels)
+} = channelsAdapter.getSelectors((state) => state.channels)
 
 export default channelsSlice.reducer

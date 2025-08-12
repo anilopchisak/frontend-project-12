@@ -1,6 +1,6 @@
 import apiClient from '../../../shared/api/apiClient.js'
 import { apiRoutes } from '../../../shared/config/apiConsts.js'
-import {appendId} from '../../../shared/lib/appendId.js'
+import { appendId } from '../../../shared/lib/appendId.js'
 
 const url = apiRoutes.messages
 

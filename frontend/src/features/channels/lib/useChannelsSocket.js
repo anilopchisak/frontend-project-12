@@ -22,7 +22,6 @@ const useChannelsSocket = () => {
     socket.on('newChannel', handleNewChannel)
     socket.on('removeChannel', handleDeleteChannel)
     socket.on('renameChannel', handleRenameChannel)
-
   }, [dispatch])
 }
 

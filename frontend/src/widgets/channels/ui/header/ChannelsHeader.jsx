@@ -2,8 +2,8 @@ import styles from './ChannelsHeader.module.css'
 import { buttonVariant } from '../../../../shared/config/buttonConsts'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import {lastActionChannels} from '../../../../shared/config/lastActionConsts.js'
-import {openModal} from '../../../../features/modal/model/modalSlice.js'
+import { lastActionChannels } from '../../../../shared/config/lastActionConsts.js'
+import { openModal } from '../../../../features/modal/model/modalSlice.js'
 import ButtonCustom from '../../../../shared/ui/button/ButtonCustom.jsx'
 
 const ChannelsHeader = () => {
@@ -14,8 +14,8 @@ const ChannelsHeader = () => {
     dispatch(openModal({
       type: lastActionChannels.create,
       props: {
-        title: t('chat.titles.addChannel')
-      }
+        title: t('chat.titles.addChannel'),
+      },
     }))
   }
 

@@ -2,7 +2,7 @@ import styles from './MessageItem.module.css'
 import cn from 'classnames'
 import { cleanText } from '../../../../shared/lib/profanityFilter'
 
-const MessageItem = ({isUser = true, message}) => {
+const MessageItem = ({ isUser = true, message }) => {
   const classes = cn({
     [styles.container]: true,
     [styles.user]: isUser,

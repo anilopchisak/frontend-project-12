@@ -1,8 +1,8 @@
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import SocketProvider from '../../app/providers/socket/SocketProvider.jsx'
-import {Navigate} from 'react-router'
+import { Navigate } from 'react-router'
 
-const PrivateRoute = ({children}) => {
+const PrivateRoute = ({ children }) => {
   const { token } = useSelector((state) => state.auth)
   return token
     ? (

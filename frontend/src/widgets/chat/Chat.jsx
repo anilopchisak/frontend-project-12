@@ -6,19 +6,19 @@ import MessageList from './ui/list/MessageList'
 import MessageForm from './ui/form/MessageForm'
 import styles from './Chat.module.css'
 import { selectAllMessages } from '../../features/messages/model/messagesSlice'
-import {useEffect} from 'react'
-import {showError} from '../../shared/toastify/toast.js'
+import { useEffect } from 'react'
+import { showError } from '../../shared/toastify/toast.js'
 
 const Chat = () => {
   const { t } = useTranslation()
-  const username = useSelector(state => state.auth.user)
+  const username = useSelector((state) => state.auth.user)
   const messages = useSelector(selectAllMessages)
-  const {errorChannels} = useSelector(state => state.channels)
-  const {errorMessages} = useSelector(state => state.messages)
-  const currentChannelId = useSelector(state => state.channels.currentChannelId)
-  const currentChannel = useSelector(state => selectChannelById(state, currentChannelId))
+  const { errorChannels } = useSelector((state) => state.channels)
+  const { errorMessages } = useSelector((state) => state.messages)
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId)
+  const currentChannel = useSelector((state) => selectChannelById(state, currentChannelId))
 
-  const currentMessages = messages.filter(message => message.channelId === currentChannelId)
+  const currentMessages = messages.filter((message) => message.channelId === currentChannelId)
   const messagesCount = currentMessages.length
 
   useEffect(() => {

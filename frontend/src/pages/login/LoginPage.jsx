@@ -6,7 +6,7 @@ import FormLayout from '../../shared/ui/form/layout/FormLayout'
 import AuthFields from '../../features/auth/ui/AuthFields'
 import { loadingStatus } from '../../shared/config/statusConsts'
 import useAuthToast from '../../widgets/toasts/hooks/useAuthToast.js'
-import {NavLink} from 'react-router'
+import { NavLink } from 'react-router'
 
 const LoginPage = () => {
   const { status } = useSelector((state) => state.auth)
