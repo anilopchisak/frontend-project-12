@@ -3,5 +3,5 @@ export const buttonVariant = {
     primaryWide: 'primaryWide',
     secondary: 'secondary',
     icon: 'icon',
-    dropdown: 'dropdown',
+    danger: 'danger',
 }

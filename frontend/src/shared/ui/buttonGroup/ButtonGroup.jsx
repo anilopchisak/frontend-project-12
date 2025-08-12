@@ -1,41 +1,54 @@
 import {useTranslation} from "react-i18next";
-import Button from '../button/Button'
+import ButtonCustom from '../button/ButtonCustom.jsx'
 import styles from './ButtonGroup.module.css'
+import {buttonVariant} from "../../config/buttonConsts.js";
 
 const ButtonGroup = ({
      btnCount = 1,
      btnVariant,
      isDisabledBtn,
      submitText,
-     onCancel
+     onCancel,
+    dangerButton = false
  }) => {
     const { t } = useTranslation()
 
     if (btnCount === 1) {
         return (
-            <Button variant={btnVariant} disabled={isDisabledBtn}>
+            <ButtonCustom variant={btnVariant} disabled={isDisabledBtn}>
                 {submitText}
-            </Button>
+            </ButtonCustom>
         )
     }
 
     if (btnCount === 2) {
         return (
             <div className={styles.modalButtons}>
-                <Button
+                <ButtonCustom
                     type="button"
-                    variant={btnVariant.cancel}
+                    variant={buttonVariant.secondary}
                     onClick={onCancel}
                 >
                     {t("chat.buttons.cancel")}
-                </Button>
-                <Button
-                    variant={btnVariant.submit}
-                    type="submit"
-                    disabled={isDisabledBtn}
-                >
-                    {submitText}
-                </Button>
+                </ButtonCustom>
+                {dangerButton ?
+                    <ButtonCustom
+                        variant={buttonVariant.danger}
+                        type="submit"
+                        disabled={isDisabledBtn}
+                    >
+                        {submitText}
+                    </ButtonCustom>
+                    :
+                    <ButtonCustom
+                        variant={buttonVariant.primary}
+                        type="submit"
+                        disabled={isDisabledBtn}
+                    >
+                        {submitText}
+                    </ButtonCustom>
+                }
+
             </div>
         )
     }

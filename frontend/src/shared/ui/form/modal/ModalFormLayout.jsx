@@ -11,6 +11,7 @@ const ModalFormLayout = ({
     label,
     fieldName,
     submitText,
+    dangerButton,
 }
 ) => {
     return (
@@ -22,6 +23,7 @@ const ModalFormLayout = ({
             formType={formTypes.modal}
             isDisabledBtn={statusLoading}
             submitText={submitText}
+            dangerButton={dangerButton}
         >
             {fieldName ?
                 <FormField

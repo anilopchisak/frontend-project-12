@@ -38,6 +38,7 @@ const AddModal = ({ onCancel }) => {
             submitText={submitText}
             label={label}
             fieldName={fieldName}
+            dangerButton={false}
         />
     )
 }

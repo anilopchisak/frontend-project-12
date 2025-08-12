@@ -13,6 +13,7 @@ const FormLayout = ({
     submitText,
     formType = formTypes.auth,
     isDisabledBtn = false,
+    dangerButton = false,
 }) => {
     const formClass = {
         [formTypes.auth]: styles.auth,
@@ -51,6 +52,7 @@ const FormLayout = ({
                     isDisabledBtn={isDisabledBtn}
                     submitText={submitText}
                     onCancel={onCancel}
+                    dangerButton={dangerButton}
                 />
             </Form>
         </Formik>

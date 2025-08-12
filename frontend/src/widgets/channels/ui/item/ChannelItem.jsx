@@ -68,7 +68,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                             <span className='visually-hidden'>{t('chat.channelManage')}</span>
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                        <Dropdown.Item
+                            <Dropdown.Item
                                 onClick={openRenameModal}
                             >
                                 {t('chat.buttons.renameChannel')}

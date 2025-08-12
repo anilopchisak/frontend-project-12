@@ -35,6 +35,7 @@ const DeleteModal = ({id, onCancel}) => {
             submitText={submitText}
             label={label}
             fieldName={fieldName}
+            dangerButton={true}
         />
     )
 }
