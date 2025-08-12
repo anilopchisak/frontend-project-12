@@ -55,8 +55,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
         <>
             <Dropdown as={ButtonGroup}>
                 <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
-                    <span aria-hidden="true">#</span>
-                    {channel.name}
+                    <span aria-hidden="true">#</span>{channel.name}
                 </Button>
                 {isRemovable &&
                     <>
