@@ -5,21 +5,21 @@ import styles from './UserControls.module.css'
 import ButtonCustom from '../../../shared/ui/button/ButtonCustom.jsx'
 
 const UserControls = () => {
-    const { t } = useTranslation()
-    const dispatch = useDispatch()
-    const { user } = useSelector(state => state.auth)
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state.auth)
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
-    return (
-        <div className={styles.authControls}>
-            <p className={styles.username}>{user}</p>
-            <ButtonCustom onClick={handleLogout}>
-                {t('auth.buttons.logout')}
-            </ButtonCustom>
-        </div>
-    )
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+  return (
+    <div className={styles.authControls}>
+      <p className={styles.username}>{user}</p>
+      <ButtonCustom onClick={handleLogout}>
+        {t('auth.buttons.logout')}
+      </ButtonCustom>
+    </div>
+  )
 }
 
 export default UserControls

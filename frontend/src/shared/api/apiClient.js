@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
 })
 
 const getAuthorizationHeader = (token) =>
-    token ? { Authorization: `Bearer ${token}` } : {}
+  token ? { Authorization: `Bearer ${token}` } : {}
 
 export default {
   get: (url, token) => axiosInstance.get(

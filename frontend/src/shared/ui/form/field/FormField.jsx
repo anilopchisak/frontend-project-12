@@ -1,50 +1,50 @@
-import { Field, ErrorMessage } from "formik"
+import { Field, ErrorMessage } from 'formik'
 import styles from './FormField.module.css'
-import {useEffect, useRef} from "react";
+import {useEffect, useRef} from 'react'
 
 const FormField = ({
-    label, 
-    name,
-    type = 'text',
-    autoComplete = 'on',
-    autoFocus = false,
+  label, 
+  name,
+  type = 'text',
+  autoComplete = 'on',
+  autoFocus = false,
 }) => {
-    const inputRef = useRef(null)
-    const handleFocus = (e) => {
-        e.target.select()
+  const inputRef = useRef(null)
+  const handleFocus = (e) => {
+    e.target.select()
+  }
+
+  useEffect(() => {
+    if (inputRef.current && autoFocus) {
+      inputRef.current.focus()
     }
+  }, [autoFocus])
 
-    useEffect(() => {
-        if (inputRef.current && autoFocus) {
-            inputRef.current.focus()
-        }
-    }, []);
+  return (
+    <div className={styles.formGroup}>
+      <label htmlFor={name} hidden>
+        {label}
+      </label>
+      <Field
+        type={type}
+        name={name}
+        id={name}
+        placeholder={label}
+        className={styles.fieldClass}
+        autoComplete={autoComplete}
+        onFocus={handleFocus}
+        innerRef={inputRef}
+      />
+      <div className={styles.errorContainer}>
+        <ErrorMessage
+          name={name}
+          component="p"
+          className={styles.errorClass}
+        />
+      </div>
 
-    return (
-        <div className={styles.formGroup}>
-            <label htmlFor={name} hidden>
-                {label}
-            </label>
-            <Field
-                type={type}
-                name={name}
-                id={name}
-                placeholder={label}
-                className={styles.fieldClass}
-                autoComplete={autoComplete}
-                onFocus={handleFocus}
-                innerRef={inputRef}
-            />
-            <div className={styles.errorContainer}>
-                <ErrorMessage
-                    name={name}
-                    component='p'
-                    className={styles.errorClass}
-                />
-            </div>
-
-        </div>
-    )
+    </div>
+  )
 }
 
 export default FormField

@@ -3,6 +3,7 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -22,8 +23,17 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
+    plugins: {
+      '@stylistic': stylistic,
+    },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
+      '@stylistic/jsx-indent-props': ['error', 2],
+      '@stylistic/jsx-indent': ['error', 2],
     },
   },
 ])

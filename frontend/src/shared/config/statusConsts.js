@@ -1,6 +1,6 @@
 export const loadingStatus = {
-    idle: 'idle',
-    loading: 'loading',
-    failed: 'failed',
-    succeeded: 'succeeded'
+  idle: 'idle',
+  loading: 'loading',
+  failed: 'failed',
+  succeeded: 'succeeded'
 }

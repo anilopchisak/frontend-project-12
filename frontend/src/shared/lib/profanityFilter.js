@@ -4,7 +4,7 @@ filter.loadDictionary('en')
 filter.loadDictionary('ru')
 
 filter.add([
-    'boobs',
+  'boobs',
   'fuck',
   'shit',
   'bitch',

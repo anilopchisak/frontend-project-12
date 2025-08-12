@@ -1,46 +1,46 @@
-import {useTranslation} from "react-i18next";
-import {useDispatch, useSelector} from "react-redux";
-import {newChannelNameValidationSchema} from "../../../../../shared/yup/schemes.js";
-import {loadingStatus} from "../../../../../shared/config/statusConsts.js";
-import {editChannel} from "../../../../channels/model/channelsSlice.js";
-import ModalFormLayout from "../../../../../shared/ui/form/modal/ModalFormLayout.jsx";
-import {cleanText} from "../../../../../shared/lib/profanityFilter.js";
+import {useTranslation} from 'react-i18next'
+import {useDispatch, useSelector} from 'react-redux'
+import {newChannelNameValidationSchema} from '../../../../../shared/yup/schemes.js'
+import {loadingStatus} from '../../../../../shared/config/statusConsts.js'
+import {editChannel} from '../../../../channels/model/channelsSlice.js'
+import ModalFormLayout from '../../../../../shared/ui/form/modal/ModalFormLayout.jsx'
+import {cleanText} from '../../../../../shared/lib/profanityFilter.js'
 
 const RenameModal = ({id, name, onCancel}) => {
-    const { t } = useTranslation()
-    const dispatch = useDispatch()
-    const {status} = useSelector(state => state.channels)
-    const {token} = useSelector(state => state.auth)
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const {status} = useSelector(state => state.channels)
+  const {token} = useSelector(state => state.auth)
 
-    const fieldName = 'name'
-    const initialValues = { [fieldName]: name }
-    const validationSchema = () => newChannelNameValidationSchema(t)
-    const statusLoading = status === loadingStatus.loading
-    const label = t('chat.labels.channelName')
-    const submitText = t('chat.buttons.send')
+  const fieldName = 'name'
+  const initialValues = { [fieldName]: name }
+  const validationSchema = () => newChannelNameValidationSchema(t)
+  const statusLoading = status === loadingStatus.loading
+  const label = t('chat.labels.channelName')
+  const submitText = t('chat.buttons.send')
 
-    const handleSubmit = ({name}, {resetForm}) => {
-        dispatch(editChannel({
-            id: id,
-            channelData: { name: cleanText(name) },
-            token,
-        }))
-        onCancel()
-        resetForm()
-    }
+  const handleSubmit = ({name}, {resetForm}) => {
+    dispatch(editChannel({
+      id: id,
+      channelData: { name: cleanText(name) },
+      token,
+    }))
+    onCancel()
+    resetForm()
+  }
 
-    return (
-        <ModalFormLayout
-            onSubmit={handleSubmit}
-            onCancel={onCancel}
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            statusLoading={statusLoading}
-            submitText={submitText}
-            label={label}
-            fieldName={fieldName}
-        />
-    )
+  return (
+    <ModalFormLayout
+      onSubmit={handleSubmit}
+      onCancel={onCancel}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      statusLoading={statusLoading}
+      submitText={submitText}
+      label={label}
+      fieldName={fieldName}
+    />
+  )
 }
 
 export default RenameModal

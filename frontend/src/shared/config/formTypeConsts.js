@@ -1,5 +1,5 @@
 export const formTypes = {
-    auth: 'auth',
-    messages: 'messages',
-    modal: 'modal',
+  auth: 'auth',
+  messages: 'messages',
+  modal: 'modal',
 }

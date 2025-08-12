@@ -1,6 +1,9 @@
 lint-frontend:
 	make -C frontend lint
 
+lint-fix-frontend:
+	make -C frontend lint-fix
+
 install:
 	npm ci
 
@@ -15,9 +18,6 @@ deploy:
 
 start:
 	make start-backend
-
-# start:
-# 	make start-backend & npm run dev
 
 develop:
 	make start-backend & make start-frontend
