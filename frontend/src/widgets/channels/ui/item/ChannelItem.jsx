@@ -5,9 +5,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import {cleanText} from "../../../../shared/lib/profanityFilter.js";
-import {openModal} from "../../../../features/modal/model/modalSlice.js";
-import {lastActionChannels} from "../../../../shared/config/lastActionConsts.js";
+import {openModal} from "../../../../features/modal/model/modalSlice.js"
+import {lastActionChannels} from "../../../../shared/config/lastActionConsts.js"
 
 const ChannelItem = ({channel, isCurrent, onSelect}) => {
     const dispatch = useDispatch()
@@ -57,7 +56,7 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
             <Dropdown as={ButtonGroup}>
                 <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
                     <span aria-hidden="true">#</span>
-                    {cleanText(channel.name)}
+                    {channel.name}
                 </Button>
                 {isRemovable &&
                     <>

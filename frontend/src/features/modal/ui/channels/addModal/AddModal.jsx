@@ -4,6 +4,7 @@ import {newChannelNameValidationSchema} from "../../../../../shared/yup/schemes.
 import {useDispatch, useSelector} from "react-redux";
 import {loadingStatus} from "../../../../../shared/config/statusConsts.js";
 import {addChannel} from "../../../../channels/model/channelsSlice.js";
+import {cleanText} from "../../../../../shared/lib/profanityFilter.js";
 
 const AddModal = ({ onCancel }) => {
     const { t } = useTranslation()
@@ -18,8 +19,11 @@ const AddModal = ({ onCancel }) => {
     const label = t('chat.labels.channelName')
     const submitText = t('chat.buttons.send')
 
-    const handleSubmit = (values, {resetForm}) => {
-        dispatch(addChannel({channelData: values, token}))
+    const handleSubmit = ({ name }, {resetForm}) => {
+        dispatch(addChannel({
+            channelData: { name: cleanText(name) },
+            token
+        }))
         onCancel()
         resetForm()
     }

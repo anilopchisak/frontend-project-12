@@ -4,6 +4,7 @@ import {newChannelNameValidationSchema} from "../../../../../shared/yup/schemes.
 import {loadingStatus} from "../../../../../shared/config/statusConsts.js";
 import {editChannel} from "../../../../channels/model/channelsSlice.js";
 import ModalFormLayout from "../../../../../shared/ui/form/modal/ModalFormLayout.jsx";
+import {cleanText} from "../../../../../shared/lib/profanityFilter.js";
 
 const RenameModal = ({id, name, onCancel}) => {
     const { t } = useTranslation()
@@ -18,10 +19,10 @@ const RenameModal = ({id, name, onCancel}) => {
     const label = t('chat.labels.channelName')
     const submitText = t('chat.buttons.send')
 
-    const handleSubmit = (values, {resetForm}) => {
+    const handleSubmit = ({name}, {resetForm}) => {
         dispatch(editChannel({
             id: id,
-            channelData: values,
+            channelData: { name: cleanText(name) },
             token,
         }))
         onCancel()
