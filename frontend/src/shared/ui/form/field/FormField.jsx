@@ -1,5 +1,6 @@
 import { Field, ErrorMessage } from "formik"
 import styles from './FormField.module.css'
+import {useEffect, useRef} from "react";
 
 const FormField = ({
     label, 
@@ -8,9 +9,16 @@ const FormField = ({
     autoComplete = 'on',
     autoFocus = false,
 }) => {
+    const inputRef = useRef(null)
     const handleFocus = (e) => {
         e.target.select()
     }
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus()
+        }
+    }, []);
 
     return (
         <div className={styles.formGroup}>
@@ -26,6 +34,7 @@ const FormField = ({
                 autoComplete={autoComplete}
                 autoFocus={autoFocus}
                 onFocus={handleFocus}
+                innerRef={inputRef}
             />
             <div className={styles.errorContainer}>
                 <ErrorMessage

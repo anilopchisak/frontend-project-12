@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {lastActionChannels} from "../../../shared/config/lastActionConsts.js";
 import {loadingStatus} from "../../../shared/config/statusConsts.js";
 import {showError, showSuccess} from "../../../shared/toastify/toast.js";
+import {handleErrorTitle} from "../../../shared/lib/handleNotifyTitle.js";
 
 const useChannelToast = () => {
     const { lastAction, error, status } = useSelector(state => state.channels)
@@ -29,7 +30,8 @@ const useChannelToast = () => {
 
     useEffect(() => {
         if (error) {
-            showError(error)
+            const title = handleErrorTitle(error, t)
+            showError(title)
         }
     }, [error])
 

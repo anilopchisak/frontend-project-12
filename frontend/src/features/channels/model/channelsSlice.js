@@ -19,7 +19,13 @@ export const getChannels = createAsyncThunk(
         try {
             return await channelsApi.fetchAll(token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    status: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
