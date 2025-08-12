@@ -20,7 +20,13 @@ export const loginUser = createAsyncThunk(
         localStorage.setItem('username', data.username)
         return data
     } catch (error) {
-        return rejectWithValue(error.response.data)
+        const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
     }
   }
 )
@@ -34,7 +40,13 @@ export const registerUser = createAsyncThunk(
         localStorage.setItem('username', data.username)
         return data
     } catch (error) {
-        return rejectWithValue(error.response.data)
+        const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
     }
   }
 )

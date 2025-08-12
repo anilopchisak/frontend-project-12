@@ -6,20 +6,16 @@ import { getMessages } from '../../features/messages/model/messagesSlice'
 import styles from './ChatPage.module.css'
 import Channels from "../../widgets/channels/Channels"
 import Chat from '../../widgets/chat/Chat'
-import {showError} from "../../shared/toastify/toast.js";
-import {handleErrorTitle} from "../../shared/lib/handleNotifyTitle.js";
 
 const ChatPage= () => {
     const dispatch = useDispatch()
     const { token } = useSelector(state => state.auth)
 
     const { 
-        status: channelsStatus, 
-        error: channelsError
+        status: channelsStatus
     } = useSelector(state => state.channels)
     const { 
-        status: messagesStatus, 
-        error: messagesError
+        status: messagesStatus
     } = useSelector(state => state.messages)
     
     useEffect(() => {
@@ -28,17 +24,6 @@ const ChatPage= () => {
             dispatch(getMessages(token))
         }
     }, [channelsStatus, messagesStatus])
-
-    useEffect(() => {
-        if (channelsError) {
-            const title = handleErrorTitle(channelsError)
-            showError(title)
-        }
-        if (messagesError) {
-            const title = handleErrorTitle(messagesError)
-            showError(title)
-        }
-    }, [messagesError, channelsError])
 
     return (
         <div className={styles.container}>

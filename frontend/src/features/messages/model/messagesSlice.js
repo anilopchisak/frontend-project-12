@@ -16,7 +16,13 @@ export const getMessages = createAsyncThunk(
         try {
             return await messagesApi.fetchAll(token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
@@ -27,7 +33,13 @@ export const addMessage = createAsyncThunk(
         try {
             return await messagesApi.create(message, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
@@ -38,7 +50,13 @@ export const editMessage = createAsyncThunk(
         try {
             return await messagesApi.update(id, message, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
@@ -49,7 +67,13 @@ export const deleteMessage = createAsyncThunk(
         try {
             return await messagesApi.remove(id, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )

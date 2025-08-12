@@ -15,7 +15,7 @@ const FormField = ({
     }
 
     useEffect(() => {
-        if (inputRef.current) {
+        if (inputRef.current && autoFocus) {
             inputRef.current.focus()
         }
     }, []);
@@ -32,7 +32,6 @@ const FormField = ({
                 placeholder={label}
                 className={styles.fieldClass}
                 autoComplete={autoComplete}
-                autoFocus={autoFocus}
                 onFocus={handleFocus}
                 innerRef={inputRef}
             />

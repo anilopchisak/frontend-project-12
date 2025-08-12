@@ -22,7 +22,7 @@ export const getChannels = createAsyncThunk(
             const errorData = error.response.data
                 ||
                 {
-                    status: error.status,
+                    statusCode: error.status,
                     statusText: error.response.statusText
                 }
             return rejectWithValue(errorData)
@@ -36,7 +36,13 @@ export const addChannel = createAsyncThunk(
         try {
             return await channelsApi.create(channelData, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
@@ -47,7 +53,13 @@ export const editChannel = createAsyncThunk(
         try {
             return await channelsApi.update(id, channelData, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
@@ -58,7 +70,13 @@ export const deleteChannel = createAsyncThunk(
         try {
             return await channelsApi.remove(id, token)
         } catch (error) {
-            return rejectWithValue(error.response.data)
+            const errorData = error.response.data
+                ||
+                {
+                    statusCode: error.status,
+                    statusText: error.response.statusText
+                }
+            return rejectWithValue(errorData)
         }
     }
 )
