@@ -65,8 +65,8 @@ const ChannelItem = ({channel, isCurrent, onSelect}) => {
                             id="dropdown-split-primary"
                             className={classesToggle}
                         />
+                        <span className='visually-hidden'>{t('chat.channelManage')}</span>
                         <Dropdown.Menu>
-                            <span className='visually-hidden'>{t('chat.channelManage')}</span>
                             <Dropdown.Item
                                 onClick={openRenameModal}
                             >
