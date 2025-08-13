@@ -4,7 +4,7 @@ const NotFoundPage = () => {
   const { t } = useTranslation()
   return (
     <div>
-      {t('notFound.elements.text')}
+      {t('notFound.title')}
     </div>
   )
 }
