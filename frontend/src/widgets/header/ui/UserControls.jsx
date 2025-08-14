@@ -12,8 +12,8 @@ const UserControls = () => {
     dispatch(logout())
   }
   return (
-    <div className='d-flex align-items-center gap-3'>
-      <p className='m-0 fw-bold'>{user}</p>
+    <div className="d-flex align-items-center gap-3">
+      <p className="m-0 fw-bold">{user}</p>
       <ButtonCustom onClick={handleLogout}>
         {t('auth.buttons.logout')}
       </ButtonCustom>
