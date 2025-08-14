@@ -30,7 +30,7 @@ const Chat = () => {
   }, [errorChannels, errorMessages])
 
   if (!currentChannel) {
-    return <div className="mx-auto fw-bold bg-body-secondary text-secondary rounded-pill px-3 py-2">{t('chat.placeholders.selectChannel')}</div>
+    return <div className="mx-auto fw-bold text-secondary px-3 py-2">{t('chat.placeholders.selectChannel')}</div>
   }
 
   return (
