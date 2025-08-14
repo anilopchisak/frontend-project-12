@@ -1,28 +1,17 @@
-import styles from './ChannelItem.module.css'
-import cn from 'classnames'
-import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../../../../features/modal/model/modalSlice.js'
 import { lastActionChannels } from '../../../../shared/config/lastActionConsts.js'
+import ButtonCustom from "../../../../shared/ui/button/ButtonCustom.jsx"
+import {buttonVariant} from "../../../../shared/config/buttonConsts.js"
 
 const ChannelItem = ({ channel, isCurrent, onSelect }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const classesChannel = cn({
-    [styles.item]: true,
-    [styles.default]: !isCurrent,
-    [styles.defaultChannel]: true,
-  })
-
-  const classesToggle = cn({
-    [styles.item]: true,
-    [styles.default]: !isCurrent,
-    [styles.defaultToggle]: true,
-  })
+  const variant = isCurrent ? buttonVariant.primary : buttonVariant.light
 
   const isRemovable = channel.removable
 
@@ -54,18 +43,17 @@ const ChannelItem = ({ channel, isCurrent, onSelect }) => {
   return (
     <>
       <Dropdown as={ButtonGroup}>
-        <Button variant="primary" onClick={handleChangeChannel} className={classesChannel}>
+        <ButtonCustom variant={variant} onClick={handleChangeChannel} classes='w-50 text-truncate text-nowrap text-start'>
           <span aria-hidden="true">#</span>
           {channel.name}
-        </Button>
+        </ButtonCustom>
         {isRemovable
           && (
             <>
               <Dropdown.Toggle
                 split
-                variant="primary"
-                id="dropdown-split-primary"
-                className={classesToggle}
+                variant={variant}
+                id="dropdown-split"
               >
                 <span className="visually-hidden">{t('chat.channelManage')}</span>
               </Dropdown.Toggle>

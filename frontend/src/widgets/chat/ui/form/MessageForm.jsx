@@ -1,7 +1,6 @@
 import { IoSend } from 'react-icons/io5'
 import { useTranslation } from 'react-i18next'
 import { Field } from 'formik'
-import styles from './MessageForm.module.css'
 import FormLayout from '../../../../shared/ui/form/layout/FormLayout'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMessage } from '../../../../features/messages/model/messagesSlice'
@@ -41,7 +40,7 @@ const MessageForm = () => {
   }, [channelId])
 
   return (
-    <div className={styles.container}>
+    <div className='py-4'>
       <FormLayout
         initialValues={{ messageField: '' }}
         onSubmit={handleSubmit}
@@ -52,7 +51,7 @@ const MessageForm = () => {
       >
         <Field
           name="messageField"
-          className={styles.fieldClass}
+          className='form-control'
           placeholder={t('chat.placeholders.newMessage')}
           innerRef={inputRef}
           autoFocus

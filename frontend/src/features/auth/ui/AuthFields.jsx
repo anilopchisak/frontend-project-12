@@ -6,7 +6,7 @@ const AuthFields = ({ withConfirmPassword = false }) => {
   const { t } = useTranslation()
 
   return (
-    <div className={styles.form}>
+    <div className='mb-2 w-100'>
       <FormField
         label={
           withConfirmPassword

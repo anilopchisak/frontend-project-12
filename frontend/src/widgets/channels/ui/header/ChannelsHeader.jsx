@@ -1,4 +1,3 @@
-import styles from './ChannelsHeader.module.css'
 import { buttonVariant } from '../../../../shared/config/buttonConsts'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -21,7 +20,7 @@ const ChannelsHeader = () => {
 
   return (
     <>
-      <div className={styles.header}>
+      <div className="d-flex justify-content-between align-items-center">
         <h3>Каналы</h3>
         <ButtonCustom
           variant={buttonVariant.icon}

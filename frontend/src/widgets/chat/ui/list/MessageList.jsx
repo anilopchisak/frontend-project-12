@@ -1,5 +1,4 @@
 import MessageItem from '../message/MessageItem'
-import styles from './MessageList.module.css'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef } from 'react'
 
@@ -25,20 +24,20 @@ const MessageList = ({ currentMessages, username }) => {
   }, [currentMessages, username])
 
   if (!currentMessages) {
-    return <div className={styles.placeholder}>{t('chat.placeholders.startChat')}</div>
+    return <div className="m-auto fw-bold p-3 rounded-pill text-secondary bg-light">{t('chat.placeholders.startChat')}</div>
   }
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      {currentMessages.map(message => (
-        <MessageItem
-          key={message.id}
-          isUser={message.username === username}
-          message={message}
-        />
-      ),
-      )}
-    </div>
+      <div className="overflow-x-hidden h-100 d-flex flex-column" ref={containerRef}>
+          {currentMessages.map(message => (
+                  <MessageItem
+                      key={message.id}
+                      isUser={message.username === username}
+                      message={message}
+                  />
+              ),
+          )}
+      </div>
   )
 }
 

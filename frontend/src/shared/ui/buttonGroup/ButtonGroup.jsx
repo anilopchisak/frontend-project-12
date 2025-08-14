@@ -23,7 +23,7 @@ const ButtonGroup = ({
 
   if (btnCount === 2) {
     return (
-      <div className={styles.modalButtons}>
+      <div className='d-flex justify-content-end gap-3 mt-3'>
         <ButtonCustom
           type="button"
           variant={buttonVariant.secondary}

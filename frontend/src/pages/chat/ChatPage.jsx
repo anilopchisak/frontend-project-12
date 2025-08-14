@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { loadingStatus } from '../../shared/config/statusConsts'
 import { getChannels } from '../../features/channels/model/channelsSlice'
 import { getMessages } from '../../features/messages/model/messagesSlice'
-import styles from './ChatPage.module.css'
 import Channels from '../../widgets/channels/Channels'
 import Chat from '../../widgets/chat/Chat'
 
@@ -26,7 +25,7 @@ const ChatPage = () => {
   }, [channelsStatus, messagesStatus, dispatch, token])
 
   return (
-    <div className={styles.container}>
+    <div className="d-flex h-100">
       <Channels />
       <Chat />
     </div>

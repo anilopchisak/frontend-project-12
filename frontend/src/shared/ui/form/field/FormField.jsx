@@ -10,6 +10,7 @@ const FormField = ({
   autoFocus = false,
 }) => {
   const inputRef = useRef(null)
+
   const handleFocus = (e) => {
     e.target.select()
   }
@@ -21,7 +22,7 @@ const FormField = ({
   }, [autoFocus])
 
   return (
-    <div className={styles.formGroup}>
+    <div className='mb-3'>
       <label htmlFor={name} hidden>
         {label}
       </label>
@@ -30,19 +31,18 @@ const FormField = ({
         name={name}
         id={name}
         placeholder={label}
-        className={styles.fieldClass}
+        className="mb-1 form-control"
         autoComplete={autoComplete}
         onFocus={handleFocus}
         innerRef={inputRef}
       />
-      <div className={styles.errorContainer}>
+      <div className='w-100'>
         <ErrorMessage
           name={name}
-          component="p"
-          className={styles.errorClass}
+          component="div"
+          className="text-warning small"
         />
       </div>
-
     </div>
   )
 }

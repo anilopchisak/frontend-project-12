@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './styles/App.css'
 import Header from '../widgets/header/Header.jsx'
 import AppRouter from './providers/router/AppRouter.jsx'
 import ToastifyContainer from '../shared/ui/toastifyContainer/ToastifyContainer.jsx'
@@ -13,18 +12,24 @@ const rollbarConfig = {
 
 const App = () => {
   return (
-    <Provider config={rollbarConfig}>
-      <ErrorBoundary>
-        <>
-          <Header />
-          <main id="content">
-            <AppRouter />
-          </main>
-          <ToastifyContainer />
-          <ModalWindow />
-        </>
-      </ErrorBoundary>
-    </Provider>
+      <div className='w-100 h-100 bg-light'>
+          <div className='w-100 h-100 container'>
+              <Provider config={rollbarConfig}>
+                  <ErrorBoundary>
+                      <div className='w-100 h-100'>
+                          <Header/>
+                          <main id='main' className='my-4 h-100 w-100 overflow-hidden'>
+                              <AppRouter/>
+                          </main>
+                          <ToastifyContainer/>
+                          <ModalWindow/>
+                      </div>
+                  </ErrorBoundary>
+              </Provider>
+          </div>
+      </div>
+
+
   )
 }
 

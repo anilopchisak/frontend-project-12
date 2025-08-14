@@ -1,20 +1,20 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    min-width: 17rem;
-    max-width: 17rem;
-    padding: 2rem 1rem 2rem 2rem;
-}
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    height: 100%;*/
+/*    overflow: hidden;*/
+/*    min-width: 17rem;*/
+/*    max-width: 17rem;*/
+/*    padding: 2rem 1rem 2rem 2rem;*/
+/*}*/
 
-.container::after {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 17rem;
-    width: 1px;
-    height: 100%;
-    background-color: var(--color-text-spec);
-    content: '';
-}
+/*.container::after {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 17rem;*/
+/*    width: 1px;*/
+/*    height: 100%;*/
+/*    background-color: var(--color-text-spec);*/
+/*    content: '';*/
+/*}*/

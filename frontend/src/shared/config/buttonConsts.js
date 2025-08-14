@@ -4,4 +4,5 @@ export const buttonVariant = {
   secondary: 'secondary',
   icon: 'icon',
   danger: 'danger',
+  light: 'light',
 }

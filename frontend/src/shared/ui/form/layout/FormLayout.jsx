@@ -16,10 +16,10 @@ const FormLayout = ({
   dangerButton = false,
 }) => {
   const formClass = {
-    [formTypes.auth]: styles.auth,
-    [formTypes.messages]: styles.messages,
-    [formTypes.modal]: styles.modal,
-  }[formType] ?? styles.auth
+    [formTypes.auth]: 'd-flex flex-column align-items-center w-100',
+    [formTypes.messages]: 'd-flex',
+    [formTypes.modal]: 'w-100',
+  }[formType] ?? 'd-flex flex-column align-items-center w-100'
 
   const btnVariant = {
     [formTypes.auth]: buttonVariant.primaryWide,

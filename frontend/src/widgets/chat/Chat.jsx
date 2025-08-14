@@ -4,7 +4,6 @@ import { selectChannelById } from '../../features/channels/model/channelsSlice'
 import ChatHeader from './ui/header/ChatHeader'
 import MessageList from './ui/list/MessageList'
 import MessageForm from './ui/form/MessageForm'
-import styles from './Chat.module.css'
 import { selectAllMessages } from '../../features/messages/model/messagesSlice'
 import { useEffect } from 'react'
 import { showError } from '../../shared/toastify/toast.js'
@@ -31,11 +30,11 @@ const Chat = () => {
   }, [errorChannels, errorMessages])
 
   if (!currentChannel) {
-    return <div className={styles.placeholder}>{t('chat.placeholders.selectChannel')}</div>
+    return <div className="mx-auto fw-bold bg-body-secondary text-secondary rounded-pill px-3 py-2">{t('chat.placeholders.selectChannel')}</div>
   }
 
   return (
-    <div className={styles.container}>
+    <div className="h-100 bg-white d-flex flex-column w-100">
       <ChatHeader
         channel={currentChannel}
         messagesCount={messagesCount}
