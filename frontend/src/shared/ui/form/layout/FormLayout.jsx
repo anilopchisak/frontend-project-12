@@ -1,5 +1,4 @@
 import { Formik, Form } from 'formik'
-import styles from './FormLayout.module.css'
 import { buttonVariant } from '../../../config/buttonConsts'
 import { formTypes } from '../../../config/formTypeConsts'
 import ButtonGroup from '../../buttonGroup/ButtonGroup.jsx'
@@ -41,7 +40,6 @@ const FormLayout = ({
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(values, formikHelpers) => onSubmit(values, formikHelpers)}
-      className={styles.form}
       validateOnBlur={false}
     >
       <Form className={formClass}>

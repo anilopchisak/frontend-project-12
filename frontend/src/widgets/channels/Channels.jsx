@@ -6,7 +6,7 @@ const Channels = () => {
   useChannelToast()
 
   return (
-    <div className="h-100 col-3 bg-white p-4">
+    <div className="d-flex flex-column h-100 col-3 bg-white p-4">
       <ChannelsHeader />
       <ChannelList />
     </div>

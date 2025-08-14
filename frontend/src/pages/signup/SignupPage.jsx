@@ -20,19 +20,21 @@ const SignupPage = () => {
   return (
     <div className="m-1 p-5 bg-white rounded-4 d-flex flex-column align-items-center justify-content-center gap-3">
       <h1>{t('auth.titles.signup')}</h1>
-      <FormLayout
-        initialValues={{
-          username: '',
-          password: '',
-          confirmPassword: '',
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={() => signupValidationSchema(t)}
-        submitText={t('auth.buttons.signup')}
-        isDisabledBtn={status === loadingStatus.loading}
-      >
-        <AuthFields withConfirmPassword="true" />
-      </FormLayout>
+      <div className="w-50">
+        <FormLayout
+          initialValues={{
+            username: '',
+            password: '',
+            confirmPassword: '',
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={() => signupValidationSchema(t)}
+          submitText={t('auth.buttons.signup')}
+          isDisabledBtn={status === loadingStatus.loading}
+        >
+          <AuthFields withConfirmPassword="true" />
+        </FormLayout>
+      </div>
     </div>
   )
 }

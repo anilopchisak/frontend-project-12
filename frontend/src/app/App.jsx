@@ -12,11 +12,11 @@ const rollbarConfig = {
 
 const App = () => {
   return (
-    <div className="w-100 h-100 bg-light">
-      <div className="w-100 h-100 container">
-        <Provider config={rollbarConfig}>
-          <ErrorBoundary>
-            <div className="w-100 h-100">
+    <Provider config={rollbarConfig}>
+      <ErrorBoundary>
+        <div className="w-100 h-100 bg-light">
+          <div className="w-100 h-100 container">
+            <div className="d-flex flex-column h-100">
               <Header />
               <main id="main" className="my-4 h-100 w-100 overflow-hidden">
                 <AppRouter />
@@ -24,11 +24,10 @@ const App = () => {
               <ToastifyContainer />
               <ModalWindow />
             </div>
-          </ErrorBoundary>
-        </Provider>
-      </div>
-    </div>
-
+          </div>
+        </div>
+      </ErrorBoundary>
+    </Provider>
   )
 }
 
