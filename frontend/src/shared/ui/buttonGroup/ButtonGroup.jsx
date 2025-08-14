@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import ButtonCustom from '../button/ButtonCustom.jsx'
-import styles from './ButtonGroup.module.css'
 import { buttonVariant } from '../../config/buttonConsts.js'
 
 const ButtonGroup = ({
@@ -23,7 +22,7 @@ const ButtonGroup = ({
 
   if (btnCount === 2) {
     return (
-      <div className='d-flex justify-content-end gap-3 mt-3'>
+      <div className="d-flex justify-content-end gap-3 mt-3">
         <ButtonCustom
           type="button"
           variant={buttonVariant.secondary}

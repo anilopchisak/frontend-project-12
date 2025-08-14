@@ -40,7 +40,7 @@ const MessageForm = () => {
   }, [channelId])
 
   return (
-    <div className='py-4'>
+    <div className="py-4">
       <FormLayout
         initialValues={{ messageField: '' }}
         onSubmit={handleSubmit}
@@ -51,7 +51,7 @@ const MessageForm = () => {
       >
         <Field
           name="messageField"
-          className='form-control'
+          className="form-control"
           placeholder={t('chat.placeholders.newMessage')}
           innerRef={inputRef}
           autoFocus

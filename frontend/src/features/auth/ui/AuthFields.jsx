@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import FormField from '../../../shared/ui/form/field/FormField'
-import styles from './AuthFields.module.css'
 
 const AuthFields = ({ withConfirmPassword = false }) => {
   const { t } = useTranslation()
 
   return (
-    <div className='mb-2 w-100'>
+    <div className="mb-2 w-100">
       <FormField
         label={
           withConfirmPassword

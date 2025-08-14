@@ -1,5 +1,4 @@
 import { Field, ErrorMessage } from 'formik'
-import styles from './FormField.module.css'
 import { useEffect, useRef } from 'react'
 
 const FormField = ({
@@ -22,7 +21,7 @@ const FormField = ({
   }, [autoFocus])
 
   return (
-    <div className='mb-3'>
+    <div className="mb-3">
       <label htmlFor={name} hidden>
         {label}
       </label>
@@ -36,7 +35,7 @@ const FormField = ({
         onFocus={handleFocus}
         innerRef={inputRef}
       />
-      <div className='w-100'>
+      <div className="w-100">
         <ErrorMessage
           name={name}
           component="div"

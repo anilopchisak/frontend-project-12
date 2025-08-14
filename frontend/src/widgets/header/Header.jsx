@@ -6,7 +6,7 @@ const Header = () => {
   const { token } = useSelector(state => state.auth)
 
   return (
-    <header className='w-100 d-flex justify-content-center align-items-center bg-white p-3'>
+    <header className="w-100 d-flex justify-content-center align-items-center bg-white p-3">
       <div className="w-100 d-flex justify-content-between">
         <h2>
           <NavLink

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { openModal } from '../../../../features/modal/model/modalSlice.js'
 import { lastActionChannels } from '../../../../shared/config/lastActionConsts.js'
-import ButtonCustom from "../../../../shared/ui/button/ButtonCustom.jsx"
-import {buttonVariant} from "../../../../shared/config/buttonConsts.js"
+import ButtonCustom from '../../../../shared/ui/button/ButtonCustom.jsx'
+import { buttonVariant } from '../../../../shared/config/buttonConsts.js'
 
 const ChannelItem = ({ channel, isCurrent, onSelect }) => {
   const dispatch = useDispatch()
@@ -43,7 +43,7 @@ const ChannelItem = ({ channel, isCurrent, onSelect }) => {
   return (
     <>
       <Dropdown as={ButtonGroup}>
-        <ButtonCustom variant={variant} onClick={handleChangeChannel} classes='w-50 text-truncate text-nowrap text-start'>
+        <ButtonCustom variant={variant} onClick={handleChangeChannel} classes="w-50 text-truncate text-nowrap text-start">
           <span aria-hidden="true">#</span>
           {channel.name}
         </ButtonCustom>

@@ -1,10 +1,7 @@
 import MessageItem from '../message/MessageItem'
-import { useTranslation } from 'react-i18next'
 import { useEffect, useRef } from 'react'
 
 const MessageList = ({ currentMessages, username }) => {
-  const { t } = useTranslation()
-
   const containerRef = useRef(null)
   const previousMessagesLengthRef = useRef(0)
 
@@ -23,21 +20,17 @@ const MessageList = ({ currentMessages, username }) => {
     previousMessagesLengthRef.current = currentMessages.length
   }, [currentMessages, username])
 
-  if (!currentMessages) {
-    return <div className="m-auto fw-bold p-3 rounded-pill text-secondary bg-light">{t('chat.placeholders.startChat')}</div>
-  }
-
   return (
-      <div className="overflow-x-hidden h-100 d-flex flex-column" ref={containerRef}>
-          {currentMessages.map(message => (
-                  <MessageItem
-                      key={message.id}
-                      isUser={message.username === username}
-                      message={message}
-                  />
-              ),
-          )}
-      </div>
+    <div className="overflow-x-hidden h-100 d-flex flex-column" ref={containerRef}>
+      {currentMessages.map(message => (
+        <MessageItem
+          key={message.id}
+          isUser={message.username === username}
+          message={message}
+        />
+      ),
+      )}
+    </div>
   )
 }
 

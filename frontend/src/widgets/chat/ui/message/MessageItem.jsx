@@ -10,7 +10,7 @@ const MessageItem = ({ isUser = true, message }) => {
 
   return (
     <div className={classes}>
-      <p className='mb-2 fw-bold'>{message.username}</p>
+      <p className="mb-2 fw-bold">{message.username}</p>
       <p>{cleanText(message.body)}</p>
     </div>
   )
