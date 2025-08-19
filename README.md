@@ -1,8 +1,7 @@
-## Чат (Slack) - упрощенная версия
+# Чат (Slack) - упрощенная версия
 Проект реализует упрощённый аналог Slack-чата. 
 
-
-Deploy link on Render: https://frontend-project-12-fu24.onrender.com
+[Ссылка на деплой проекта на Render](https://frontend-project-12-fu24.onrender.com)
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/anilopchisak/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/anilopchisak/frontend-project-12/actions)
